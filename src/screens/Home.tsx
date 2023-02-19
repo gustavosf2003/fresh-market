@@ -1,14 +1,30 @@
-import React from "react";
-import AppBar from "../components/AppBar";
-import BottomBar from "../components/BottomBar";
-import { SafeAreaView, View, Text } from "react-native";
-import { LinearGradient } from "expo-linear-gradient";
+import React, { useState } from "react";
+import { SafeAreaView, View, Text, ScrollView } from "react-native";
 import Layout from "../components/Layout";
+import ScrollList from "../components/ScrollList";
 const Home: React.FC = () => {
+  const [category, setCategory] = useState("vegetables");
+  const categories = [
+    "vegetables",
+    "legumes",
+    "snacks",
+    "meat",
+    "bakery",
+    "fruits",
+  ];
   return (
     <>
       <Layout>
-        <Text>Home</Text>
+        <ScrollList
+          categories={categories}
+          currentCategory={"vegetables"}
+          categoryChange={setCategory}
+        />
+        <View className={`border-b border-gray-300 my-3`} />
+        <View className="mx-5">
+          <Text className="text-xl font-bold">290+ Results</Text>
+          <Text className="text-xl font-bold">{category}</Text>
+        </View>
       </Layout>
     </>
   );
