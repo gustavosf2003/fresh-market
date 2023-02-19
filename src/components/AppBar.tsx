@@ -8,6 +8,8 @@ import { useFonts } from "expo-font";
 import { RoutesName } from "../../config/routes";
 
 const AppBar: React.FC = () => {
+  const navigation = useNavigation();
+  const route = useRoute();
   let [fontsLoaded] = useFonts({
     Caveat: require("../../assets/fonts/Caveat-Bold.ttf"),
   });
@@ -15,8 +17,6 @@ const AppBar: React.FC = () => {
   if (!fontsLoaded) {
     return null;
   }
-  const navigation = useNavigation();
-  const route = useRoute();
   return (
     <SafeAreaView
       style={{ backgroundColor: appStyle.backgroundColor }}

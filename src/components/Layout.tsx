@@ -7,7 +7,7 @@ const Layout = ({ children }: PropsWithChildren) => {
   return (
     <>
       <AppBar />
-      {children}
+      <View>{children}</View>
       <BottomBar />
     </>
   );
