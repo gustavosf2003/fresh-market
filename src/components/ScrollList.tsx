@@ -20,7 +20,13 @@ const ScrollList = ({
       showsHorizontalScrollIndicator={false}
     >
       {categories.map((category) => {
-        return <Badge title={category} badgeChange={categoryChange}></Badge>;
+        return (
+          <Badge
+            key={category}
+            title={category}
+            badgeChange={categoryChange}
+          ></Badge>
+        );
       })}
     </ScrollView>
   );
