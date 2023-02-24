@@ -1,9 +1,8 @@
-import { StorageKeys, setStorageData } from "../../utils/storage";
-import React, { createContext, useContext, useState } from "react";
-import { View, Text, Image, TouchableOpacity } from "react-native";
+import React, { useContext, useState } from "react";
+import { View, Text, Image } from "react-native";
 import Counter from "./Counter";
-import { addToCart, removeFromCart } from "../../utils/manageCart";
-import { Product } from "../../interfaces/products";
+import { addToCart, removeFromCart } from "@app/utils/manageCart";
+import { Product } from "@app/interfaces/products";
 import { ProductContext } from "../screens/Home";
 
 export interface ProductCardProps {

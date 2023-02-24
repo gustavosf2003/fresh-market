@@ -1,15 +1,14 @@
 import React, { createContext, useEffect, useState } from "react";
-import { SafeAreaView, View, Text, ScrollView, Button } from "react-native";
+import { View, Text, ScrollView, Button } from "react-native";
 import Layout from "../components/Layout";
 import ScrollList from "../components/ScrollList";
 import ProductCard from "../components/ProductCard";
 import {
-  removeStorageData,
   getStorageData,
   setStorageData,
   StorageKeys,
-} from "../../utils/storage";
-import { Product } from "../../interfaces/products";
+} from "@app/utils/storage";
+import { Product } from "@app/interfaces/products";
 const categories = [
   "vegetables",
   "legumes",

@@ -1,5 +1,5 @@
 import { Product } from "../interfaces/products";
-import { ProductCardProps } from "../src/components/ProductCard";
+import { ProductCardProps } from "@app/src/components/ProductCard";
 import { StorageKeys, setStorageData } from "./storage";
 
 export const addToCart = (params: ProductCardProps): void => {
