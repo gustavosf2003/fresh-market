@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import { SafeAreaView, View, Text, ScrollView, Button } from "react-native";
 import Layout from "../components/Layout";
 import ScrollList from "../components/ScrollList";
@@ -9,6 +9,7 @@ import {
   setStorageData,
   StorageKeys,
 } from "../../utils/storage";
+import { Product } from "../../interfaces/products";
 const categories = [
   "vegetables",
   "legumes",
@@ -43,44 +44,49 @@ async function getStorageCart(
     setCart([]);
   }
 }
+interface MyContextType {
+  savedProducts: Product[];
+  setSavedProducts: React.Dispatch<React.SetStateAction<never[]>>;
+}
+export const ProductContext = createContext<MyContextType>({
+  savedProducts: [],
+  setSavedProducts: () => {},
+});
 const Home: React.FC = () => {
   const [category, setCategory] = useState("vegetables");
-  const [cart, setCart] = useState([]);
-  console.log(cart);
+  const [savedProducts, setSavedProducts] = useState([]);
   useEffect(() => {
-    getStorageCart(setCart);
+    getStorageCart(setSavedProducts);
   }, []);
+  console.log(savedProducts);
   useEffect(() => {
-    if (cart.length > 0) {
-      setStorageData(StorageKeys.products, JSON.stringify(cart));
+    if (savedProducts.length > 0) {
+      setStorageData(StorageKeys.products, JSON.stringify(savedProducts));
     }
-  }, [cart]);
+  }, [savedProducts]);
   return (
     <>
-      <Layout>
-        <ScrollList
-          categories={categories}
-          currentCategory={"vegetables"}
-          categoryChange={setCategory}
-        />
-        <View className={`border-b border-gray-300 my-3`} />
-        <ScrollView
-          showsVerticalScrollIndicator={false}
-          contentContainerStyle={{ paddingBottom: 320 }}
-          className="mx-5"
-        >
-          <Text className="text-xl font-bold">+256 products</Text>
-          <Text className="text-xl font-bold">{category}</Text>
-          {productsList.map((product) => (
-            <ProductCard
-              key={product.id}
-              cart={cart}
-              setCart={setCart}
-              product={product}
-            />
-          ))}
-        </ScrollView>
-      </Layout>
+      <ProductContext.Provider value={{ savedProducts, setSavedProducts }}>
+        <Layout>
+          <ScrollList
+            categories={categories}
+            currentCategory={"vegetables"}
+            categoryChange={setCategory}
+          />
+          <View className={`border-b border-gray-300 my-3`} />
+          <ScrollView
+            showsVerticalScrollIndicator={false}
+            contentContainerStyle={{ paddingBottom: 320 }}
+            className="mx-5"
+          >
+            <Text className="text-xl font-bold">+256 products</Text>
+            <Text className="text-xl font-bold">{category}</Text>
+            {productsList.map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))}
+          </ScrollView>
+        </Layout>
+      </ProductContext.Provider>
     </>
   );
 };

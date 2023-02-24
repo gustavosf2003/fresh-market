@@ -1,11 +1,21 @@
 import { StorageKeys, setStorageData } from "../../utils/storage";
-import React, { useState } from "react";
+import React, { createContext, useContext, useState } from "react";
 import { View, Text, Image, TouchableOpacity } from "react-native";
 import Counter from "./Counter";
 import { addToCart, removeFromCart } from "../../utils/manageCart";
-import { ProductCardProps } from "../../interfaces/products";
+import { Product } from "../../interfaces/products";
+import { ProductContext } from "../screens/Home";
 
-const ProductCard = ({ cart, setCart, product }: ProductCardProps) => {
+export interface ProductCardProps {
+  savedProducts: Product[];
+  setSavedProducts: React.Dispatch<React.SetStateAction<any>>;
+  product: Product;
+}
+interface ProductProp {
+  product: Product;
+}
+const ProductCard = ({ product }: ProductProp) => {
+  const { savedProducts, setSavedProducts } = useContext(ProductContext);
   const [counterValue, setCounterValue] = useState(0);
   return (
     <View className="flex flex-row justify-between mt-4">
@@ -24,13 +34,13 @@ const ProductCard = ({ cart, setCart, product }: ProductCardProps) => {
         removeItem={() => {
           if (counterValue > 0) {
             setCounterValue(counterValue - 1);
-            removeFromCart({ product, cart, setCart });
+            removeFromCart({ product, savedProducts, setSavedProducts });
           }
         }}
         addItem={() => {
           if (counterValue < 9) {
             setCounterValue(counterValue + 1);
-            addToCart({ product, cart, setCart });
+            addToCart({ product, savedProducts, setSavedProducts });
           }
         }}
       />
