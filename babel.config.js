@@ -4,12 +4,14 @@ module.exports = function (api) {
     presets: ["babel-preset-expo"],
     plugins: [
       "nativewind/babel",
-      "module-resolver",
-      {
-        alias: {
-          "@app": "./src",
+      [
+        "module-resolver",
+        {
+          alias: {
+            "@app": "./",
+          },
         },
-      },
+      ],
     ],
   };
 };
