@@ -1,11 +1,10 @@
-import clsx from "clsx";
-import React, { useEffect, useState } from "react";
-import { Button, View, Text, Pressable } from "react-native";
+import React from "react";
+import { View, Text, Pressable, GestureResponderEvent } from "react-native";
 
 interface CounterProps {
   counter: number;
-  removeItem: any;
-  addItem: any;
+  removeItem: ((event: GestureResponderEvent) => void) | null | undefined;
+  addItem: ((event: GestureResponderEvent) => void) | null | undefined;
 }
 
 const Counter = ({ counter, removeItem, addItem }: CounterProps) => {
@@ -20,12 +19,11 @@ const Counter = ({ counter, removeItem, addItem }: CounterProps) => {
         </>
       )}
       <Pressable
-        className={clsx(
-          "",
+        className={
           counter > 0
             ? "ml-3 py-1.5 px-3 "
             : " w-10 h-10 flex items-center justify-center"
-        )}
+        }
         onPress={addItem}
       >
         <Text className="text-xl">+</Text>
