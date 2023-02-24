@@ -4,10 +4,5 @@ export interface Product {
   name: string;
   origin: string;
   price: number;
-  quantity: number;
-}
-export interface ProductCardProps {
-  cart: Array<Product>;
-  setCart: React.Dispatch<React.SetStateAction<any>>;
-  product: any;
+  quantity?: number;
 }
