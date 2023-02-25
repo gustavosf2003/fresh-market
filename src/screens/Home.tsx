@@ -9,6 +9,7 @@ import {
   StorageKeys,
 } from "@app/utils/storage";
 import { Product } from "@app/interfaces/products";
+import { ProductContext } from "@app/context/product";
 const categories = [
   "vegetables",
   "legumes",
@@ -43,14 +44,7 @@ async function getStorageCart(
     setCart([]);
   }
 }
-interface MyContextType {
-  savedProducts: Product[];
-  setSavedProducts: React.Dispatch<React.SetStateAction<never[]>>;
-}
-export const ProductContext = createContext<MyContextType>({
-  savedProducts: [],
-  setSavedProducts: () => {},
-});
+
 const Home: React.FC = () => {
   const [category, setCategory] = useState("vegetables");
   const [savedProducts, setSavedProducts] = useState([]);

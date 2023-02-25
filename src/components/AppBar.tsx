@@ -5,13 +5,13 @@ import { FontAwesome } from "@expo/vector-icons";
 
 import { appStyle } from "../../styles";
 import { useFonts } from "expo-font";
-import { RoutesName } from "../../config/routes";
+import { RoutesName } from "@app/config/constants";
 
 const AppBar: React.FC = () => {
   const navigation = useNavigation();
   const route = useRoute();
   let [fontsLoaded] = useFonts({
-    Caveat: require("../../assets/fonts/Caveat-Bold.ttf"),
+    Caveat: require("@app/assets/fonts/Caveat-Bold.ttf"),
   });
 
   if (!fontsLoaded) {

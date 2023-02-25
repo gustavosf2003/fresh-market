@@ -4,8 +4,8 @@ import { Feather } from "@expo/vector-icons";
 import { clsx } from "clsx";
 import { FontAwesome } from "@expo/vector-icons";
 import { appStyle } from "../../styles";
-import { RoutesName } from "../../config/routes";
 import { useNavigation, useRoute } from "@react-navigation/native";
+import { RoutesName } from "@app/config/constants";
 
 interface BottomBarIconProps {
   icon: any;

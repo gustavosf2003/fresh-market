@@ -1,10 +1,9 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React from "react";
-import { View } from "react-native";
-import { NavigationContainer } from "@react-navigation/native";
 import Home from "../src/screens/Home";
 import Products from "../src/screens/Products";
 import User from "../src/screens/User";
+import { RoutesName } from "@app/config/constants";
 
 const Stack = createNativeStackNavigator();
 const Routes: React.FC = () => {
@@ -24,9 +23,3 @@ const Routes: React.FC = () => {
 };
 
 export default Routes;
-
-export const RoutesName = {
-  home: "home",
-  products: "products",
-  user: "user",
-};
