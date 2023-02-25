@@ -3,7 +3,7 @@ import { View, Text, Image } from "react-native";
 import Counter from "./Counter";
 import { addToCart, removeFromCart } from "@app/utils/manageCart";
 import { Product } from "@app/interfaces/products";
-import { ProductContext } from "../screens/Home";
+import { ProductContext } from "@app/context/product";
 
 export interface ProductCardProps {
   savedProducts: Product[];
