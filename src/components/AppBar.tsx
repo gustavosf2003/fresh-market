@@ -2,8 +2,7 @@ import React, { useEffect } from "react";
 import { View, Text, Button, SafeAreaView } from "react-native";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { FontAwesome } from "@expo/vector-icons";
-
-import { appStyle } from "../../styles";
+import { appStyle } from "@app/styles";
 import { useFonts } from "expo-font";
 import { RoutesName } from "@app/config/constants";
 

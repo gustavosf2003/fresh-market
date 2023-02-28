@@ -3,11 +3,13 @@ import { View, Text, TouchableOpacity } from "react-native";
 import Card from "../Card";
 import LottieView from "lottie-react-native";
 import Badge from "../Badge";
-import { businessRules } from "../../../config/constants";
+import { businessRules } from "@app/config/constants";
+
 interface TipProps {
   tip: number;
   setTip: React.Dispatch<React.SetStateAction<number>>;
 }
+
 const Tips = ({ tip, setTip }: TipProps) => {
   const tips = businessRules.tips;
   return (

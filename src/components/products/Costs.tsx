@@ -3,7 +3,7 @@ import Card from "../Card";
 import { View, Text } from "react-native";
 import { calculateSubtotalCost, calculateTotalCost } from "@app/utils/prices";
 import { businessRules } from "@app/config/constants";
-import { Product } from "../../../interfaces/products";
+import { Product } from "@app/interfaces/products";
 
 interface CostsProps {
   discount: number;
@@ -40,7 +40,7 @@ const Costs = ({ discount, savedProducts, deliveryFee }: CostsProps) => {
       <View className={`border-b border-gray-300 my-3`} />
       <View className="flex flex-row justify-between mt-1.5">
         <Text>Total</Text>
-        <Text>{calculateTotalCost(savedProducts, discount)}€</Text>
+        <Text>{calculateTotalCost(savedProducts, deliveryFee, discount)}€</Text>
       </View>
     </Card>
   );
