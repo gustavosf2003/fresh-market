@@ -15,6 +15,7 @@ const StretchedButton = ({
 }: ButtonProps) => {
   return (
     <TouchableOpacity
+      onPress={onPress}
       className={clsx(
         "flex items-center justify-center w-full h-12 rounded-lg bg-primary",
         nativeWindStyle
