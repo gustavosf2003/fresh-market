@@ -16,6 +16,7 @@ export function calculateSubtotalCost(
 }
 export function calculateTotalCost(
   items: Product[],
+  deliveryFee: number,
   discount?: number
 ): number {
   let total = 0;
@@ -23,7 +24,7 @@ export function calculateTotalCost(
     total += item.price * (item.quantity || 0);
   }
   if (discount) {
-    return total - discount + businessRules.deliveryFee;
+    return total - discount + deliveryFee;
   }
-  return total + businessRules.deliveryFee;
+  return total + deliveryFee;
 }

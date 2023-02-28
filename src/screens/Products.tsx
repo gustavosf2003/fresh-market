@@ -5,11 +5,10 @@ import {
 } from "@app/utils/storage";
 import React, { useEffect, useState } from "react";
 import { Text, View, ScrollView } from "react-native";
-import { Product } from "../../interfaces/products";
+import { Product } from "@app/interfaces/products";
 import { ProductContext } from "@app/context/product";
-import { businessRules } from "../../config/constants";
+import { businessRules } from "@app/config/constants";
 import LottieView from "lottie-react-native";
-import { calculateTotalCost } from "@app/utils/prices";
 import StretchedButton from "../components/StretchedButton";
 import ProductCard from "../components/ProductCard";
 import Card from "../components/Card";
@@ -18,10 +17,12 @@ import Address from "../components/products/Address";
 import Costs from "../components/products/Costs";
 import Tips from "../components/products/Tips";
 import Review from "../components/products/Review";
+import { totalProducts } from "@app/utils/manageCart";
+import { sendOrder } from "@app/utils/order";
+
 const Products: React.FC = () => {
   const [savedProducts, setSavedProducts] = useState<Product[]>([]);
   const [tipValue, setTipValue] = useState(0);
-  console.log(tipValue);
   useEffect(() => {
     const fetchSavedProducts = async () => {
       const data = await getStorageData(StorageKeys.products);
@@ -34,20 +35,17 @@ const Products: React.FC = () => {
   useEffect(() => {
     setStorageData(StorageKeys.products, JSON.stringify(savedProducts));
   }, [savedProducts]);
-  const totalProducts = savedProducts.reduce(
-    (acc: number, curr: Product) => acc + (curr.quantity || 0),
-    0
-  );
-  const subtotal = savedProducts.reduce(
-    (acc: number, curr: Product) => acc * (curr.price || 0),
-    0
-  );
+
   return (
     <>
       <ProductContext.Provider value={{ savedProducts, setSavedProducts }}>
         {savedProducts.length > 0 && (
           <View className="absolute z-20 w-full h-12 px-4 bottom-32">
-            <StretchedButton onPress={() => console.log("Order done")}>
+            <StretchedButton
+              onPress={() =>
+                sendOrder(savedProducts, tipValue, businessRules.deliveryFee, 0)
+              }
+            >
               Confirm order
             </StretchedButton>
           </View>
@@ -63,7 +61,9 @@ const Products: React.FC = () => {
               <View>
                 <Card>
                   <Text className="text-2xl font-semibold">Your Order</Text>
-                  <Text className="mt-1">{totalProducts} Products</Text>
+                  <Text className="mt-1">
+                    {totalProducts(savedProducts)} Products
+                  </Text>
                   {savedProducts &&
                     savedProducts.map((product) => (
                       <ProductCard
@@ -75,7 +75,7 @@ const Products: React.FC = () => {
                     ))}
                 </Card>
                 <Costs
-                  deliveryFee={businessRules.deliveryFee}
+                  deliveryFee={businessRules.deliveryFee + tipValue}
                   discount={0}
                   savedProducts={savedProducts}
                 />
@@ -85,7 +85,7 @@ const Products: React.FC = () => {
                   address="Rua João Do Nascimento Costa n 1"
                 />
                 <Tips setTip={setTipValue} tip={tipValue} />
-                <Review products={savedProducts} />
+                <Review products={savedProducts} tips={tipValue} />
               </View>
             ) : (
               <View className="flex items-center text-center mt-28">
