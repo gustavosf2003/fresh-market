@@ -60,13 +60,17 @@ const Home: React.FC = () => {
   return (
     <>
       <ProductContext.Provider value={{ savedProducts, setSavedProducts }}>
-        <Layout>
+        <Layout nativeWindStyle="mt-6">
           <ScrollList
             categories={categories}
             currentCategory={"vegetables"}
             categoryChange={setCategory}
           />
           <View className={`border-b border-gray-300 my-3`} />
+          <Button
+            onPress={() => setStorageData(StorageKeys.products, "[]")}
+            title="clear"
+          ></Button>
           <ScrollView
             showsVerticalScrollIndicator={false}
             contentContainerStyle={{ paddingBottom: 320 }}
