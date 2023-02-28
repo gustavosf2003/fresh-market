@@ -4,18 +4,21 @@ import Counter from "./Counter";
 import { addToCart, removeFromCart } from "@app/utils/manageCart";
 import { Product } from "@app/interfaces/products";
 import { ProductContext } from "@app/context/product";
+import { businessRules } from "@app/config/constants";
 
 export interface ProductCardProps {
   savedProducts: Product[];
   setSavedProducts: React.Dispatch<React.SetStateAction<any>>;
   product: Product;
 }
-interface ProductProp {
+export interface ProductProp {
   product: Product;
+  quantity?: number;
+  showDynamicPrice?: boolean;
 }
-const ProductCard = ({ product }: ProductProp) => {
+const ProductCard = ({ product, quantity, showDynamicPrice }: ProductProp) => {
   const { savedProducts, setSavedProducts } = useContext(ProductContext);
-  const [counterValue, setCounterValue] = useState(0);
+  const [counterValue, setCounterValue] = useState(quantity ?? 0);
   return (
     <View className="flex flex-row justify-between mt-4">
       <View className="flex flex-row ">
@@ -25,7 +28,10 @@ const ProductCard = ({ product }: ProductProp) => {
             <Text className="flex font-medium">{product.name}</Text>
             <Text>Origin: {product.origin}</Text>
           </View>
-          <Text className="font-bold">{product.price}€</Text>
+          <Text className="font-bold">
+            {showDynamicPrice ? product.price * counterValue : product.price}
+            {businessRules.currency}
+          </Text>
         </View>
       </View>
       <Counter
