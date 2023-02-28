@@ -14,7 +14,7 @@ export function sendOrder(
   tips: number,
   deliveryFee: number,
   discount: number,
-  price: number
+  price?: number
 ) {
   let order: Order = {
     products: products,
