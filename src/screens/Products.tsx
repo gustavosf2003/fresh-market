@@ -1,11 +1,27 @@
-import Layout from "../components/Layout";
-import { StorageKeys, getStorageData } from "../../utils/storage";
-import { useEffect, useState } from "react";
-import { Button, Text, View } from "react-native";
+import {
+  StorageKeys,
+  getStorageData,
+  setStorageData,
+} from "@app/utils/storage";
+import React, { useEffect, useState } from "react";
+import { Text, View, ScrollView } from "react-native";
 import { Product } from "../../interfaces/products";
-import Badge from "../components/Badge";
+import { ProductContext } from "@app/context/product";
+import { businessRules } from "../../config/constants";
+import LottieView from "lottie-react-native";
+import { calculateTotalCost } from "@app/utils/prices";
+import StretchedButton from "../components/StretchedButton";
+import ProductCard from "../components/ProductCard";
+import Card from "../components/Card";
+import Layout from "../components/Layout";
+import Address from "../components/products/Address";
+import Costs from "../components/products/Costs";
+import Tips from "../components/products/Tips";
+import Review from "../components/products/Review";
 const Products: React.FC = () => {
-  const [savedProducts, setSavedProducts] = useState<Product[] | null>(null);
+  const [savedProducts, setSavedProducts] = useState<Product[]>([]);
+  const [tipValue, setTipValue] = useState(0);
+  console.log(tipValue);
   useEffect(() => {
     const fetchSavedProducts = async () => {
       const data = await getStorageData(StorageKeys.products);
@@ -15,41 +31,81 @@ const Products: React.FC = () => {
     };
     fetchSavedProducts();
   }, []);
-
+  useEffect(() => {
+    setStorageData(StorageKeys.products, JSON.stringify(savedProducts));
+  }, [savedProducts]);
+  const totalProducts = savedProducts.reduce(
+    (acc: number, curr: Product) => acc + (curr.quantity || 0),
+    0
+  );
+  const subtotal = savedProducts.reduce(
+    (acc: number, curr: Product) => acc * (curr.price || 0),
+    0
+  );
   return (
     <>
-      <Layout>
-        <View className="h-full ">
-          <View className="px-6 py-2 bg-slate-100 rounded-xl">
-            <Text>Your Order</Text>
-            <Text>X Products</Text>
-            {savedProducts &&
-              savedProducts.map((product) => (
-                <Text key={product.id}>{product.id}</Text>
-              ))}
+      <ProductContext.Provider value={{ savedProducts, setSavedProducts }}>
+        {savedProducts.length > 0 && (
+          <View className="absolute z-20 w-full h-12 px-4 bottom-32">
+            <StretchedButton onPress={() => console.log("Order done")}>
+              Confirm order
+            </StretchedButton>
           </View>
-          <View className="px-6 py-3 mt-3 bg-slate-100 rounded-xl">
-            <Text>Discount</Text>
-            <Text>Subtotal</Text>
-            <Text>Delivery fee</Text>
-            <Text>X Products</Text>
-            <Text>Total</Text>
-          </View>
-          <View className="px-6 pt-3 pb-4 mt-3 bg-slate-100 rounded-xl">
-            <Text>Time</Text>
-            <Text>Addredd</Text>
-            <View className="h-40 bg-gray-300 rounded-xl"></View>
-          </View>
-          <View className="px-6 pt-3 pb-4 mt-3 bg-slate-100 rounded-xl">
-            <Text>Add Tip</Text>
-            <Badge title="a"></Badge>
-          </View>
-          <View className="px-6 pt-3 pb-4 mt-3 bg-slate-100 rounded-xl">
-            <Text>Total</Text>
-            <Text>Payment</Text>
-          </View>
-        </View>
-      </Layout>
+        )}
+        <Layout>
+          <ScrollView
+            contentContainerStyle={{
+              paddingTop: 12,
+              paddingBottom: 320,
+            }}
+          >
+            {savedProducts.length > 0 ? (
+              <View>
+                <Card>
+                  <Text className="text-2xl font-semibold">Your Order</Text>
+                  <Text className="mt-1">{totalProducts} Products</Text>
+                  {savedProducts &&
+                    savedProducts.map((product) => (
+                      <ProductCard
+                        key={product.id}
+                        product={product}
+                        quantity={product.quantity}
+                        showDynamicPrice
+                      />
+                    ))}
+                </Card>
+                <Costs
+                  deliveryFee={businessRules.deliveryFee}
+                  discount={0}
+                  savedProducts={savedProducts}
+                />
+                <Address
+                  minTime={20}
+                  maxTime={25}
+                  address="Rua João Do Nascimento Costa n 1"
+                />
+                <Tips setTip={setTipValue} tip={tipValue} />
+                <Review products={savedProducts} />
+              </View>
+            ) : (
+              <View className="flex items-center text-center mt-28">
+                <LottieView
+                  source={require("@app/assets/gifs/phone.json")}
+                  autoPlay
+                  loop
+                  style={{ width: 28, height: 280 }}
+                />
+                <Text className="mt-10 text-2xl text-center">
+                  There is no saved product.
+                </Text>
+                <Text className="mt-2 text-2xl text-center ">
+                  Start saving some products
+                </Text>
+              </View>
+            )}
+          </ScrollView>
+        </Layout>
+      </ProductContext.Provider>
     </>
   );
 };

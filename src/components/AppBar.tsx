@@ -18,10 +18,7 @@ const AppBar: React.FC = () => {
     return null;
   }
   return (
-    <SafeAreaView
-      style={{ backgroundColor: appStyle.backgroundColor }}
-      className="mb-6"
-    >
+    <SafeAreaView style={{ backgroundColor: appStyle.backgroundColor }}>
       <View className="flex flex-row items-center justify-between px-5 py-3 bg-primary">
         <Text
           className="text-4xl text-white basis-1/2"

@@ -1,13 +1,19 @@
 import React, { PropsWithChildren } from "react";
-import { View, Text } from "react-native";
+import { View, Text, ScrollView } from "react-native";
 import BottomBar from "./BottomBar";
 import AppBar from "./AppBar";
+import { clsx } from "clsx";
 
-const Layout = ({ children }: PropsWithChildren) => {
+interface LayoutProps {
+  children: React.ReactNode;
+  nativeWindStyle?: string;
+}
+
+const Layout = ({ children, nativeWindStyle }: LayoutProps) => {
   return (
     <>
       <AppBar />
-      <View>{children}</View>
+      <View className={clsx(nativeWindStyle)}>{children}</View>
       <BottomBar />
     </>
   );
