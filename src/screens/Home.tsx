@@ -51,7 +51,6 @@ const Home: React.FC = () => {
   useEffect(() => {
     getStorageCart(setSavedProducts);
   }, []);
-  console.log(savedProducts);
   useEffect(() => {
     if (savedProducts.length > 0) {
       setStorageData(StorageKeys.products, JSON.stringify(savedProducts));

@@ -42,3 +42,10 @@ export const removeFromCart = (params: ProductCardProps) => {
     setStorageData(StorageKeys.products, JSON.stringify(savedProducts));
   }
 };
+
+export function totalProducts(products: Product[]) {
+  return products.reduce(
+    (acc: number, curr: Product) => acc + (curr.quantity || 0),
+    0
+  );
+}

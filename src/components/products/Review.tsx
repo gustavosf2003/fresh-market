@@ -1,15 +1,20 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { View, Text } from "react-native";
 import Card from "../Card";
 import { calculateTotalCost } from "@app/utils/prices";
 import { businessRules } from "@app/config/constants";
+import { Product } from "@app/interfaces/products";
 
-import { Product } from "../../../interfaces/products";
 interface ReviewProps {
   products: Product[];
+  tips: number;
 }
-const Review = ({ products }: ReviewProps) => {
-  const total = calculateTotalCost(products);
+
+const Review = ({ products, tips }: ReviewProps) => {
+  const total = useMemo(
+    () => calculateTotalCost(products, businessRules.deliveryFee + tips),
+    [products, tips]
+  );
   const parsedTotal = `${total} ${businessRules.currency}`;
   return (
     <Card>
