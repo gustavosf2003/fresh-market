@@ -3,6 +3,7 @@ import { View, Text } from "react-native";
 import Card from "../Card";
 import { Feather } from "@expo/vector-icons";
 import { appStyle } from "@app/styles";
+import MapComponent from "../MapComponent";
 
 interface AddressProps {
   minTime: number;
@@ -23,7 +24,7 @@ const Address = ({ minTime, maxTime, address }: AddressProps) => {
         <Feather name="map-pin" size={24} color={appStyle.iconColor} />
         <Text className="text-lg">{address}</Text>
       </View>
-      <View className="h-40 mt-3 bg-gray-300 rounded-xl"></View>
+      <MapComponent address="Rua Joao do Nascimento Costa n 1" />
     </Card>
   );
 };
