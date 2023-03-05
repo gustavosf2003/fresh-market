@@ -24,7 +24,9 @@ const Address = ({ minTime, maxTime, address }: AddressProps) => {
         <Feather name="map-pin" size={24} color={appStyle.iconColor} />
         <Text className="text-lg">{address}</Text>
       </View>
-      <MapComponent address="Rua Joao do Nascimento Costa n 1" />
+      <View className="h-48">
+        <MapComponent address="Rua Joao do Nascimento Costa n 1" />
+      </View>
     </Card>
   );
 };

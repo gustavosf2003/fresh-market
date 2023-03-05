@@ -40,7 +40,7 @@ const MapComponent = ({ address }: MapComponentProps) => {
 
   return (
     <MapView
-      style={{ height: 200, width: "100%", borderRadius: 12, marginTop: 12 }}
+      style={{ height: "100%", width: "100%", borderRadius: 12, marginTop: 12 }}
       initialRegion={{
         latitude: location.lat,
         longitude: location.lng,
