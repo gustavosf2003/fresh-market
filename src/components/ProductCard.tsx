@@ -1,10 +1,10 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { View, Text, Image } from "react-native";
-import Counter from "./Counter";
 import { addToCart, removeFromCart } from "@app/utils/manageCart";
 import { Product } from "@app/interfaces/products";
 import { ProductContext } from "@app/context/product";
 import { businessRules } from "@app/config/constants";
+import Counter from "./Counter";
 
 export interface ProductCardProps {
   savedProducts: Product[];
@@ -16,9 +16,20 @@ export interface ProductProp {
   quantity?: number;
   showDynamicPrice?: boolean;
 }
+
+function getQuantityById(items: Product[], id: number): number | undefined {
+  const item = items.find((item) => item.id === id);
+  return item?.quantity ?? 0;
+}
+
 const ProductCard = ({ product, quantity, showDynamicPrice }: ProductProp) => {
   const { savedProducts, setSavedProducts } = useContext(ProductContext);
-  const [counterValue, setCounterValue] = useState(quantity ?? 0);
+  const [counterValue, setCounterValue] = useState<number>(0);
+
+  useEffect(() => {
+    setCounterValue(getQuantityById(savedProducts, product.id)!);
+  }, [savedProducts]);
+
   return (
     <View className="flex flex-row justify-between mt-4">
       <View className="flex flex-row ">
