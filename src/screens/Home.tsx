@@ -10,14 +10,8 @@ import {
 } from "@app/utils/storage";
 import { Product } from "@app/interfaces/products";
 import { ProductContext } from "@app/context/product";
-const categories = [
-  "vegetables",
-  "legumes",
-  "snacks",
-  "meat",
-  "bakery",
-  "fruits",
-];
+import { useIsFocused } from "@react-navigation/native";
+const categories = ["fruits", "vegetables", "snacks", "meat", "bakery"];
 const productsList = [
   {
     id: 0,
@@ -32,6 +26,13 @@ const productsList = [
     name: "Potato",
     origin: "Portugal",
     price: 20.0,
+  },
+  {
+    id: 2,
+    image: "Mandioquinha",
+    name: "Mandioquinha",
+    origin: "Brazil",
+    price: 50.0,
   },
 ];
 async function getStorageCart(
@@ -48,14 +49,17 @@ async function getStorageCart(
 const Home: React.FC = () => {
   const [category, setCategory] = useState("vegetables");
   const [savedProducts, setSavedProducts] = useState([]);
+  const isHomePageFocused = useIsFocused();
+
   useEffect(() => {
-    getStorageCart(setSavedProducts);
-  }, []);
-  useEffect(() => {
-    if (savedProducts.length > 0) {
-      setStorageData(StorageKeys.products, JSON.stringify(savedProducts));
+    if (isHomePageFocused) {
+      getStorageCart(setSavedProducts);
     }
+  }, [isHomePageFocused]);
+  useEffect(() => {
+    setStorageData(StorageKeys.products, JSON.stringify(savedProducts));
   }, [savedProducts]);
+
   return (
     <>
       <ProductContext.Provider value={{ savedProducts, setSavedProducts }}>
