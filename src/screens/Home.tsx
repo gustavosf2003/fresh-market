@@ -28,7 +28,7 @@ async function getStorageCart(
 }
 
 const Home: React.FC = () => {
-  const [category, setCategory] = useState("vegetables");
+  const [category, setCategory] = useState("fruits");
   const [savedProducts, setSavedProducts] = useState([]);
   const isHomePageFocused = useIsFocused();
   const { loading, error, data } = useQuery(GET_PRODUCTS);
@@ -48,11 +48,12 @@ const Home: React.FC = () => {
       <ProductContext.Provider value={{ savedProducts, setSavedProducts }}>
         <Layout nativeWindStyle="mt-6">
           {loading && <Text>Loading</Text>}
+          {error && <Text>{error.toString()}</Text>}
           {data && (
             <>
               <ScrollList
                 categories={categories}
-                currentCategory={"vegetables"}
+                currentCategory={category}
                 categoryChange={setCategory}
               />
               <View className={`border-b border-gray-300 my-3`} />
@@ -72,7 +73,7 @@ const Home: React.FC = () => {
                       product.content.category.name === category
                   )
                   .map((product: Product) => (
-                    <ProductCard key={product.id} product={product.content} />
+                    <ProductCard key={product.id} product={product} />
                   ))}
               </ScrollView>
             </>

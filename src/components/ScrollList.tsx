@@ -24,6 +24,7 @@ const ScrollList = ({
           <Badge
             key={category}
             title={category}
+            active={currentCategory == category}
             badgeChange={categoryChange}
           ></Badge>
         );
