@@ -22,6 +22,7 @@ export const addToCart = (params: ProductCardProps): void => {
 
 export const removeFromCart = (params: ProductCardProps) => {
   var { product, savedProducts, setSavedProducts } = params;
+
   const existingProduct = savedProducts.find(
     (p: Product) => p.id === product.id
   );

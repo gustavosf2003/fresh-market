@@ -7,7 +7,7 @@ export function calculateSubtotalCost(
 ): number {
   let total = 0;
   for (const item of items) {
-    total += item.price * (item.quantity || 0);
+    total += item.content.price * (item.quantity || 0);
   }
   if (discount) {
     return total - discount + businessRules.deliveryFee;
@@ -21,10 +21,15 @@ export function calculateTotalCost(
 ): number {
   let total = 0;
   for (const item of items) {
-    total += item.price * (item.quantity || 0);
+    total += item.content.price * (item.quantity || 0);
   }
   if (discount) {
     return total - discount + deliveryFee;
   }
   return total + deliveryFee;
+}
+
+export function parseCurrency(value: number) {
+  var formattedNum = (Math.round(value * 100) / 100).toFixed(2);
+  return `${formattedNum}${businessRules.currency}`;
 }

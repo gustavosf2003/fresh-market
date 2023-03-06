@@ -70,7 +70,7 @@ const Products: React.FC = () => {
                       <ProductCard
                         key={product.id}
                         product={product}
-                        quantity={product.quantity}
+                        quantity={product.content.quantity}
                         showDynamicPrice
                       />
                     ))}

@@ -5,6 +5,7 @@ import { Product } from "@app/interfaces/products";
 import { ProductContext } from "@app/context/product";
 import { businessRules } from "@app/config/constants";
 import Counter from "./Counter";
+import { parseCurrency } from "../../utils/prices";
 
 export interface ProductCardProps {
   savedProducts: Product[];
@@ -17,7 +18,10 @@ export interface ProductProp {
   showDynamicPrice?: boolean;
 }
 
-function getQuantityById(items: Product[], id: number): number | undefined {
+function getQuantityByProductId(
+  items: Product[],
+  id: number
+): number | undefined {
   const item = items.find((item) => item.id === id);
   return item?.quantity ?? 0;
 }
@@ -25,23 +29,38 @@ function getQuantityById(items: Product[], id: number): number | undefined {
 const ProductCard = ({ product, quantity, showDynamicPrice }: ProductProp) => {
   const { savedProducts, setSavedProducts } = useContext(ProductContext);
   const [counterValue, setCounterValue] = useState<number>(0);
+  var productContent = product.content;
 
   useEffect(() => {
-    setCounterValue(getQuantityById(savedProducts, product.id)!);
+    setCounterValue(getQuantityByProductId(savedProducts, product.id)!);
   }, [savedProducts]);
 
   return (
     <View className="flex flex-row justify-between mt-4">
       <View className="flex flex-row ">
-        <View className="w-32 h-20 bg-gray-300"></View>
+        <View className="w-32 h-24">
+          <Image
+            style={{
+              width: "100%",
+              height: "100%",
+            }}
+            source={{ uri: productContent.image.filename }}
+          />
+        </View>
         <View className="flex justify-between my-1 ml-2 ">
           <View>
-            <Text className="flex font-medium">{product.name}</Text>
-            <Text>Origin: {product.origin}</Text>
+            <Text className="flex font-medium">{productContent.name}</Text>
+            <Text className="text-gray-700">{productContent.unit}</Text>
+            <Text className="text-gray-700">
+              Origin: {productContent.origin}
+            </Text>
           </View>
           <Text className="font-bold">
-            {showDynamicPrice ? product.price * counterValue : product.price}
-            {businessRules.currency}
+            {parseCurrency(
+              showDynamicPrice
+                ? productContent.price * counterValue
+                : productContent.price
+            )}
           </Text>
         </View>
       </View>
