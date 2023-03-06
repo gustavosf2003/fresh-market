@@ -68,7 +68,7 @@ const Products: React.FC = () => {
                   {savedProducts &&
                     savedProducts.map((product) => (
                       <ProductCard
-                        key={product.id}
+                        key={product.name}
                         product={product}
                         quantity={product.quantity}
                         showDynamicPrice
