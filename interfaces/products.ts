@@ -3,13 +3,13 @@ export interface Product {
   image: Image;
   name: string;
   content: Product;
+  unit: string;
   category: Category;
   origin: string;
   price: number;
   quantity?: number;
 }
 interface Image {
-  __typename: string;
   filename: string;
 }
 interface Category {
