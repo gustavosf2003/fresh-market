@@ -17,8 +17,11 @@ export interface ProductProp {
   showDynamicPrice?: boolean;
 }
 
-function getQuantityById(items: Product[], id: number): number | undefined {
-  const item = items.find((item) => item.id === id);
+function getQuantityByProductName(
+  items: Product[],
+  name: string
+): number | undefined {
+  const item = items.find((item) => item.name === name);
   return item?.quantity ?? 0;
 }
 
@@ -27,13 +30,21 @@ const ProductCard = ({ product, quantity, showDynamicPrice }: ProductProp) => {
   const [counterValue, setCounterValue] = useState<number>(0);
 
   useEffect(() => {
-    setCounterValue(getQuantityById(savedProducts, product.id)!);
+    setCounterValue(getQuantityByProductName(savedProducts, product.name)!);
   }, [savedProducts]);
 
   return (
     <View className="flex flex-row justify-between mt-4">
       <View className="flex flex-row ">
-        <View className="w-32 h-20 bg-gray-300"></View>
+        <View className="w-32 h-20">
+          <Image
+            style={{
+              width: "100%",
+              height: "100%",
+            }}
+            source={{ uri: product.image.filename }}
+          />
+        </View>
         <View className="flex justify-between my-1 ml-2 ">
           <View>
             <Text className="flex font-medium">{product.name}</Text>
