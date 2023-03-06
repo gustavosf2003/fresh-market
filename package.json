@@ -9,14 +9,18 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@apollo/react-hooks": "^4.0.0",
     "@react-native-async-storage/async-storage": "^1.17.11",
     "@react-navigation/native": "^6.1.4",
     "@react-navigation/native-stack": "^6.9.10",
+    "apollo-client": "^2.6.10",
+    "apollo-link-http": "^1.5.17",
     "clsx": "^1.2.1",
     "expo": "~47.0.12",
     "expo-font": "~11.0.1",
     "expo-linear-gradient": "~12.0.1",
     "expo-status-bar": "~1.4.2",
+    "graphql": "^15.8.0",
     "lottie-react-native": "^5.1.5",
     "native-base": "^3.4.25",
     "nativewind": "^2.0.11",
