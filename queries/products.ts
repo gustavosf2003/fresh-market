@@ -2,7 +2,7 @@ import { gql } from "@apollo/react-hooks";
 
 export const GET_PRODUCTS = gql`
   {
-    ProductItems {
+    ProductItems(sort_by: "name", per_page: 40) {
       items {
         id
         content {
