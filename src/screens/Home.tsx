@@ -70,7 +70,7 @@ const Home: React.FC = () => {
       <Layout nativeWindStyle="mt-6">
         {loading && <Text>Loading</Text>}
         {error && <Text>{error.toString()}</Text>}
-        {data && (
+        {data && categoriesData && (
           <>
             <ScrollList
               categories={categories.reverse()}
