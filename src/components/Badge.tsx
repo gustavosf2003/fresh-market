@@ -13,13 +13,13 @@ const Badge = ({ title, badgeChange, active }: BadgeProps) => {
     <TouchableOpacity
       onPress={badgeChange ? () => badgeChange(title) : () => {}}
       className={clsx(
-        "flex flex-row items-center justify-center px-3.5 py-2 rounded-2xl mx-1 max-h-12",
+        "flex flex-row items-center justify-center px-3.5  rounded-2xl mx-1 max-h-12",
         active
           ? " border-2 border-primary bg-[#e1fdefff] text-primary"
-          : "bg-gray-300"
+          : "bg-gray-300 "
       )}
     >
-      <Text className="capitalize">{title}</Text>
+      <Text className="pt-2 pb-2 capitalize">{title}</Text>
     </TouchableOpacity>
   );
 };
