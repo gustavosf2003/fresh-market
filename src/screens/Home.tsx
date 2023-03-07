@@ -13,8 +13,8 @@ import {
 import { Product } from "@app/interfaces/products";
 import { ProductContext } from "@app/context/product";
 import { useIsFocused } from "@react-navigation/native";
-
-const categories = ["fruits", "vegetables", "fish", "meat", "bakery"];
+import { GET_CATEGORIES } from "@app/queries/categories";
+import { Categories } from "@app/interfaces/categories";
 
 async function getStorageCart(
   setCart: React.Dispatch<React.SetStateAction<never[]>>
@@ -28,11 +28,25 @@ async function getStorageCart(
 }
 
 const Home: React.FC = () => {
-  const [category, setCategory] = useState("fruits");
+  const [category, setCategory] = useState("");
   const [savedProducts, setSavedProducts] = useState([]);
   const isHomePageFocused = useIsFocused();
   const { loading, error, data } = useQuery(GET_PRODUCTS);
+  const {
+    loading: categoriesLoading,
+    error: categoriesError,
+    data: categoriesData,
+  } = useQuery(GET_CATEGORIES);
+  const categories = categoriesData?.CategoryItems.items.map(
+    (item: Categories) => item.name
+  );
   const products = data?.ProductItems.items;
+
+  useEffect(() => {
+    if (category.length == 0) {
+      setCategory("fruits");
+    }
+  }, [categories]);
 
   useEffect(() => {
     if (isHomePageFocused) {
@@ -43,44 +57,45 @@ const Home: React.FC = () => {
     setStorageData(StorageKeys.products, JSON.stringify(savedProducts));
   }, [savedProducts]);
 
+  let filteredProducts;
+  if (data) {
+    filteredProducts = products
+      .filter((product: Product) => product.content.category.name === category)
+      .map((product: Product) => (
+        <ProductCard key={product.id} product={product} />
+      ));
+  }
   return (
-    <>
-      <ProductContext.Provider value={{ savedProducts, setSavedProducts }}>
-        <Layout nativeWindStyle="mt-6">
-          {loading && <Text>Loading</Text>}
-          {error && <Text>{error.toString()}</Text>}
-          {data && (
-            <>
-              <ScrollList
-                categories={categories}
-                currentCategory={category}
-                categoryChange={setCategory}
-              />
-              <View className={`border-b border-gray-300 my-3`} />
-              <Button
-                onPress={() => setStorageData(StorageKeys.products, "[]")}
-                title="clear"
-              ></Button>
-              <ScrollView
-                showsVerticalScrollIndicator={false}
-                contentContainerStyle={{ paddingBottom: 320 }}
-                className="mx-5"
-              >
-                <Text className="text-xl font-bold">+256 products</Text>
-                {products
-                  .filter(
-                    (product: Product) =>
-                      product.content.category.name === category
-                  )
-                  .map((product: Product) => (
-                    <ProductCard key={product.id} product={product} />
-                  ))}
-              </ScrollView>
-            </>
-          )}
-        </Layout>
-      </ProductContext.Provider>
-    </>
+    <ProductContext.Provider value={{ savedProducts, setSavedProducts }}>
+      <Layout nativeWindStyle="mt-6">
+        {loading && <Text>Loading</Text>}
+        {error && <Text>{error.toString()}</Text>}
+        {data && (
+          <>
+            <ScrollList
+              categories={categories.reverse()}
+              currentCategory={category}
+              categoryChange={setCategory}
+            />
+            <View className={`border-b border-gray-300 my-3`} />
+            <Button
+              onPress={() => setStorageData(StorageKeys.products, "[]")}
+              title="clear"
+            ></Button>
+            <ScrollView
+              showsVerticalScrollIndicator={false}
+              contentContainerStyle={{ paddingBottom: 320 }}
+              className="mx-5"
+            >
+              <Text className="text-xl font-bold">
+                {filteredProducts.length} products
+              </Text>
+              {filteredProducts}
+            </ScrollView>
+          </>
+        )}
+      </Layout>
+    </ProductContext.Provider>
   );
 };
 export default Home;
