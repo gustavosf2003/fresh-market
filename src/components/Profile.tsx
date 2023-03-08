@@ -4,8 +4,7 @@ import { View, Text, TextInput, Image, ScrollView } from "react-native";
 import { useState, useEffect } from "react";
 import { StorageKeys, getStorageData } from "@app/utils/storage";
 import { setStorageData } from "../../utils/storage";
-import TextField from "./TextField";
-
+import { Input } from "react-native-elements";
 const Profile: React.FC = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -32,26 +31,26 @@ const Profile: React.FC = () => {
         <Text className="text-2xl font-bold">{name}</Text>
       </View>
       <ScrollView className="-mx-2.5 mt-8">
-        <TextField
+        <Input
           label="Name"
           defaultValue={name}
-          onType={(value) => {
+          onChangeText={(value) => {
             setName(value);
             setStorageData(StorageKeys.name, value);
           }}
         />
-        <TextField
+        <Input
           label="Email"
           defaultValue={email}
-          onType={(value) => {
+          onChangeText={(value) => {
             setEmail(value);
             setStorageData(StorageKeys.email, value);
           }}
         />
-        <TextField
+        <Input
           label="Address"
           defaultValue={address}
-          onType={(value) => {
+          onChangeText={(value) => {
             setAddress(value);
             setStorageData(StorageKeys.address, value);
           }}
