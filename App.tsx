@@ -6,14 +6,16 @@ import Geocoder from "react-native-geocoding";
 import React from "react";
 import { ApolloProvider } from "@apollo/react-hooks";
 import { storyBlokClient } from "./services/api";
-
+import { ThemeProvider } from "react-native-elements";
 export default function App() {
   Geocoder.init(GOOGLE_MAPS_TOKEN);
   return (
     <ApolloProvider client={storyBlokClient}>
-      <NavigationContainer>
-        <Routes />
-      </NavigationContainer>
+      <ThemeProvider>
+        <NavigationContainer>
+          <Routes />
+        </NavigationContainer>
+      </ThemeProvider>
     </ApolloProvider>
   );
 }
