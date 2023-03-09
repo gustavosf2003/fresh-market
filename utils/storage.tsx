@@ -5,6 +5,7 @@ export const StorageKeys = {
   name: "name",
   email: "email",
   address: "address",
+  isRegistered: "registered",
 };
 
 export const setStorageData = async (key: string, value: string) => {
