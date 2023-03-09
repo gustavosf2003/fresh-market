@@ -47,6 +47,7 @@ const MapComponent = ({ address }: MapComponentProps) => {
         latitudeDelta: 0.005,
         longitudeDelta: 0.02,
       }}
+      scrollEnabled={false}
     >
       <Marker
         coordinate={{
