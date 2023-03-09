@@ -77,14 +77,11 @@ const Home: React.FC = () => {
               currentCategory={category}
               categoryChange={setCategory}
             />
-            <View className={`border-b border-gray-300 my-3`} />
-            <Button
-              onPress={() => setStorageData(StorageKeys.products, "[]")}
-              title="clear"
-            ></Button>
+            <View className={`border-b border-gray-300 mt-3`} />
+
             <ScrollView
               showsVerticalScrollIndicator={false}
-              contentContainerStyle={{ paddingBottom: 320 }}
+              contentContainerStyle={{ paddingBottom: 320, paddingTop: 24 }}
               className="mx-5"
             >
               <Text className="text-xl font-bold">
