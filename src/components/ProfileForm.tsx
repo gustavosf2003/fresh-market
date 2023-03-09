@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import { StorageKeys, getStorageData } from "@app/utils/storage";
 import { setStorageData } from "../../utils/storage";
 import { Input } from "react-native-elements";
-const Profile: React.FC = () => {
+const ProfileForm: React.FC = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [address, setAddress] = useState("");
@@ -34,6 +34,7 @@ const Profile: React.FC = () => {
         <Input
           label="Name"
           defaultValue={name}
+          autoCorrect={false}
           onChangeText={(value) => {
             setName(value);
             setStorageData(StorageKeys.name, value);
@@ -41,6 +42,7 @@ const Profile: React.FC = () => {
         />
         <Input
           label="Email"
+          autoCorrect={false}
           defaultValue={email}
           onChangeText={(value) => {
             setEmail(value);
@@ -50,6 +52,7 @@ const Profile: React.FC = () => {
         <Input
           label="Address"
           defaultValue={address}
+          autoCorrect={false}
           onChangeText={(value) => {
             setAddress(value);
             setStorageData(StorageKeys.address, value);
@@ -60,4 +63,4 @@ const Profile: React.FC = () => {
   );
 };
 
-export default Profile;
+export default ProfileForm;
