@@ -2,18 +2,20 @@ import React, { useState } from "react";
 import { Text, View, TouchableOpacity, Image } from "react-native";
 import Layout from "../components/Layout";
 import ProfileCategory from "../components/ProfileCategory";
-import Profile from "../components/Profile";
+import ProfileForm from "../components/ProfileForm";
 import Orders from "../components/Orders";
+import Discounts from "../components/Discounts";
 
 function getPageContent(category: number) {
   switch (category) {
     case 0:
-      return <Profile />;
+      return <ProfileForm />;
     case 1:
       return <Orders />;
-
+    case 2:
+      return <Discounts />;
     default:
-      return <Profile />;
+      return <ProfileForm />;
   }
 }
 
