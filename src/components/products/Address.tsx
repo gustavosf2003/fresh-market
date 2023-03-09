@@ -25,7 +25,7 @@ const Address = ({ minTime, maxTime, address }: AddressProps) => {
         <Text className="text-lg">{address}</Text>
       </View>
       <View className="h-48">
-        <MapComponent address="Rua Joao do Nascimento Costa n 1" />
+        <MapComponent address={address} />
       </View>
     </Card>
   );
