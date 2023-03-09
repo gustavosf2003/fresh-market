@@ -33,7 +33,10 @@ const ProfileCategory = ({
         <View className={clsx("p-4 basis-1/3")} key={item.id}>
           <TouchableOpacity
             onPress={() => categoryChange(item.id)}
-            className="flex items-center p-4 bg-gray-200 rounded-lg"
+            className={clsx(
+              "flex items-center p-4  rounded-lg",
+              currentCategory == item.id ? "bg-slate-300" : "bg-slate-200"
+            )}
           >
             <Image className="w-12 h-12" source={item.image} />
             <Text className="mt-2">{item.name}</Text>
