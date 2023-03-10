@@ -1,11 +1,12 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-export const StorageKeys = {
-  products: "products",
-  name: "name",
-  email: "email",
-  address: "address",
-};
+export enum StorageKeys {
+  products = "products",
+  name = "name",
+  email = "email",
+  address = "address",
+  isRegistered = "registered",
+}
 
 export const setStorageData = async (key: string, value: string) => {
   try {

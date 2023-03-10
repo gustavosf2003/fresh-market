@@ -2,30 +2,38 @@ import React, { useState } from "react";
 import { Text, View, TouchableOpacity, Image } from "react-native";
 import Layout from "../components/Layout";
 import ProfileCategory from "../components/ProfileCategory";
-import Profile from "../components/Profile";
+import ProfileForm from "../components/ProfileForm";
 import Orders from "../components/Orders";
+import Discounts from "../components/Discounts";
 
-function getPageContent(category: number) {
+enum Categories {
+  Profile = 0, // Added missing double quotes around 0
+  Orders = 1,
+  Discounts = 2,
+}
+
+function getPageContent(category: Categories) {
   switch (category) {
-    case 0:
-      return <Profile />;
-    case 1:
+    case Categories.Profile:
+      return <ProfileForm />;
+    case Categories.Orders:
       return <Orders />;
-
+    case Categories.Discounts:
+      return <Discounts />;
     default:
-      return <Profile />;
+      return <ProfileForm />;
   }
 }
 
 const User: React.FC = () => {
-  const [profileCategory, setProfileCategory] = useState(0);
+  const [profileCategory, setProfileCategory] = useState(Categories.Profile);
   return (
     <Layout>
       <ProfileCategory
         currentCategory={profileCategory}
         categoryChange={setProfileCategory}
       />
-      <View className={`border-b border-gray-300`} />
+      <View className="border-b border-gray-300" />
       <View className="mx-8 mt-4">{getPageContent(profileCategory)}</View>
     </Layout>
   );

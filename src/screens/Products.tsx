@@ -23,11 +23,14 @@ import { sendOrder } from "@app/utils/order";
 const Products: React.FC = () => {
   const [savedProducts, setSavedProducts] = useState<Product[]>([]);
   const [tipValue, setTipValue] = useState(0);
+  const [address, setAddress] = useState("");
 
   useEffect(() => {
     const fetchSavedProducts = async () => {
       const data = await getStorageData(StorageKeys.products);
-      if (data) {
+      const localAddress = await getStorageData(StorageKeys.address);
+      if (data && localAddress) {
+        setAddress(localAddress);
         setSavedProducts(JSON.parse(data));
       }
     };
@@ -81,11 +84,9 @@ const Products: React.FC = () => {
                   savedProducts={savedProducts}
                 />
                 <Tips setTip={setTipValue} tip={tipValue} />
-                <Address
-                  minTime={20}
-                  maxTime={25}
-                  address="Rua João Do Nascimento Costa n 1"
-                />
+                {address.length > 0 && (
+                  <Address minTime={20} maxTime={25} address={address} />
+                )}
                 <Review products={savedProducts} tips={tipValue} />
               </View>
             ) : (
