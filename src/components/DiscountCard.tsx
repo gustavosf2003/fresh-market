@@ -8,11 +8,11 @@ interface DiscountCardProps {
 }
 
 const DiscountCard = ({ title, description }: DiscountCardProps) => {
-  const [isClicked, setisClicked] = useState(false);
+  const [isClicked, setIsClicked] = useState(false);
   return (
     <TouchableOpacity
       className="pb-2 mb-8 border-b border-b-gray-500"
-      onPress={() => setisClicked(!isClicked)}
+      onPress={() => setIsClicked(!isClicked)}
     >
       <View className="flex flex-row items-center justify-between">
         <Text className="text-lg font-semibold">{title}</Text>
