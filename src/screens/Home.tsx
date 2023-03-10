@@ -77,7 +77,7 @@ const Home: React.FC = () => {
               currentCategory={category}
               categoryChange={setCategory}
             />
-            <View className={`border-b border-gray-300 mt-3`} />
+            <View className="mt-3 border-b border-gray-300" />
 
             <ScrollView
               showsVerticalScrollIndicator={false}

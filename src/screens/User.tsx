@@ -6,13 +6,19 @@ import ProfileForm from "../components/ProfileForm";
 import Orders from "../components/Orders";
 import Discounts from "../components/Discounts";
 
-function getPageContent(category: number) {
+enum Categories {
+  Profile = 0, // Added missing double quotes around 0
+  Orders = 1,
+  Discounts = 2,
+}
+
+function getPageContent(category: Categories) {
   switch (category) {
-    case 0:
+    case Categories.Profile:
       return <ProfileForm />;
-    case 1:
+    case Categories.Orders:
       return <Orders />;
-    case 2:
+    case Categories.Discounts:
       return <Discounts />;
     default:
       return <ProfileForm />;
@@ -20,14 +26,14 @@ function getPageContent(category: number) {
 }
 
 const User: React.FC = () => {
-  const [profileCategory, setProfileCategory] = useState(0);
+  const [profileCategory, setProfileCategory] = useState(Categories.Profile);
   return (
     <Layout>
       <ProfileCategory
         currentCategory={profileCategory}
         categoryChange={setProfileCategory}
       />
-      <View className={`border-b border-gray-300`} />
+      <View className="border-b border-gray-300" />
       <View className="mx-8 mt-4">{getPageContent(profileCategory)}</View>
     </Layout>
   );
