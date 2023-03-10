@@ -34,8 +34,8 @@ const ProfileCategory = ({
           <TouchableOpacity
             onPress={() => categoryChange(item.id)}
             className={clsx(
-              "flex items-center p-4  rounded-lg",
-              currentCategory == item.id ? "bg-slate-300" : "bg-slate-200"
+              "flex items-center p-4 rounded-lg",
+              currentCategory === item.id ? "bg-slate-300" : "bg-slate-200"
             )}
           >
             <Image className="w-12 h-12" source={item.image} />
