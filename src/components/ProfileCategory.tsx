@@ -19,8 +19,8 @@ const profileCategories = [
   },
   {
     id: 2,
-    name: "Discounts",
-    image: require("@app/assets/discount.png"),
+    name: "About us",
+    image: require("@app/assets/vegetables.png"),
   },
 ];
 const ProfileCategory = ({
