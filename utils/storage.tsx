@@ -6,6 +6,7 @@ export enum StorageKeys {
   email = "email",
   address = "address",
   isRegistered = "registered",
+  orders = "orders",
 }
 
 export const setStorageData = async (key: string, value: string) => {
