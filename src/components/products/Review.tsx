@@ -1,10 +1,10 @@
 import React, { useMemo } from "react";
-import { View, Text } from "react-native";
+import { View, Text, Image } from "react-native";
 import Card from "../Card";
 import { calculateTotalCost } from "@app/utils/prices";
 import { businessRules } from "@app/config/constants";
 import { Product } from "@app/interfaces/products";
-import { parseCurrency } from "../../../utils/prices";
+import { parseCurrency } from "@app/utils/prices";
 
 interface ReviewProps {
   products: Product[];
@@ -24,7 +24,10 @@ const Review = ({ products, tips }: ReviewProps) => {
       </View>
       <View className="flex flex-row justify-between mt-2">
         <View className="flex flex-row items-center">
-          <View className="w-6 h-5 mr-2 bg-slate-300"></View>
+          <Image
+            className="w-6 h-5 mr-2 "
+            source={require("@app/assets/mbway.png")}
+          />
           <Text>MBWay</Text>
         </View>
         <Text>{parseCurrency(total)}</Text>
