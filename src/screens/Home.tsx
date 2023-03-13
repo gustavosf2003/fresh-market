@@ -15,6 +15,7 @@ import { ProductContext } from "@app/context/product";
 import { useIsFocused } from "@react-navigation/native";
 import { GET_CATEGORIES } from "@app/queries/categories";
 import { Categories } from "@app/interfaces/categories";
+import ProductsLoader from "../components/loader/ProductsLoader";
 
 async function getStorageCart(
   setCart: React.Dispatch<React.SetStateAction<never[]>>
@@ -68,7 +69,7 @@ const Home: React.FC = () => {
   return (
     <ProductContext.Provider value={{ savedProducts, setSavedProducts }}>
       <Layout nativeWindStyle="mt-6">
-        {loading && <Text>Loading</Text>}
+        {loading && <ProductsLoader />}
         {error && <Text>{error.toString()}</Text>}
         {data && categoriesData && (
           <>
