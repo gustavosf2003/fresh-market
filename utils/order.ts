@@ -1,5 +1,8 @@
+import { NavigationProp } from "@react-navigation/native";
 import { Product } from "../interfaces/products";
 import { calculateTotalCost } from "./prices";
+import { RoutesName } from "../config/constants";
+import { setStorageData, StorageKeys } from "./storage";
 
 interface Order {
   products: Product[];
@@ -10,6 +13,7 @@ interface Order {
 }
 
 export function sendOrder(
+  navigation: NavigationProp<ReactNavigation.RootParamList>,
   products: Product[],
   tips: number,
   deliveryFee: number,
@@ -24,4 +28,6 @@ export function sendOrder(
     price: calculateTotalCost(products, deliveryFee, discount),
   };
   console.log(order);
+  navigation.navigate(RoutesName.processing as never);
+  setStorageData(StorageKeys.products, "[]");
 }

@@ -3,6 +3,7 @@ export const RoutesName = {
   products: "products",
   user: "user",
   register: "register",
+  processing: "processing",
 };
 
 export const businessRules = {

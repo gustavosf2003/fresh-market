@@ -7,14 +7,19 @@ import { clsx } from "clsx";
 interface LayoutProps {
   children: React.ReactNode;
   nativeWindStyle?: string;
+  bottomBar?: boolean;
 }
 
-const Layout = ({ children, nativeWindStyle }: LayoutProps) => {
+const Layout = ({
+  children,
+  nativeWindStyle,
+  bottomBar = true,
+}: LayoutProps) => {
   return (
     <>
       <AppBar />
       <View className={clsx(nativeWindStyle)}>{children}</View>
-      <BottomBar />
+      {bottomBar && <BottomBar />}
     </>
   );
 };
