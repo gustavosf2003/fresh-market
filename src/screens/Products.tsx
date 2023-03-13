@@ -19,11 +19,13 @@ import Tips from "../components/products/Tips";
 import Review from "../components/products/Review";
 import { totalProducts } from "@app/utils/manageCart";
 import { sendOrder } from "@app/utils/order";
+import { useNavigation } from "@react-navigation/native";
 
 const Products: React.FC = () => {
   const [savedProducts, setSavedProducts] = useState<Product[]>([]);
   const [tipValue, setTipValue] = useState(0);
   const [address, setAddress] = useState("");
+  const navigation = useNavigation();
 
   useEffect(() => {
     const fetchSavedProducts = async () => {
@@ -46,9 +48,15 @@ const Products: React.FC = () => {
         {savedProducts.length > 0 && (
           <View className="absolute z-20 w-full h-12 px-4 bottom-32">
             <StretchedButton
-              onPress={() =>
-                sendOrder(savedProducts, tipValue, businessRules.deliveryFee, 0)
-              }
+              onPress={() => {
+                sendOrder(
+                  navigation,
+                  savedProducts,
+                  tipValue,
+                  businessRules.deliveryFee,
+                  0
+                );
+              }}
             >
               Confirm order
             </StretchedButton>

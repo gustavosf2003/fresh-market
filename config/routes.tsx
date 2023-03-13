@@ -7,6 +7,7 @@ import { RoutesName } from "@app/config/constants";
 import Register from "@app/src/screens/Register";
 import { getStorageData, StorageKeys } from "../utils/storage";
 import { useState, useEffect } from "react";
+import ProcessingOrder from "@app/src/screens/ProcessingOrder";
 
 async function checkRegistration(): Promise<boolean> {
   const isRegistered = await getStorageData(StorageKeys.isRegistered);
@@ -36,6 +37,10 @@ const Routes = () => {
         <Stack.Screen name={RoutesName.home} component={Home} />
         <Stack.Screen name={RoutesName.register} component={Register} />
         <Stack.Screen name={RoutesName.products} component={Products} />
+        <Stack.Screen
+          name={RoutesName.processing}
+          component={ProcessingOrder}
+        />
         <Stack.Screen name={RoutesName.user} component={User} />
       </Stack.Navigator>
     )
