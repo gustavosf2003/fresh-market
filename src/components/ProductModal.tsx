@@ -26,47 +26,28 @@ const ProductModal = ({
   const { savedProducts, setSavedProducts } = useContext(ProductContext);
   const productContent = product.content;
   return (
-    <CustomModal isOpen={isOpen} setIsOpen={setIsOpen} title={`#${product.id}`}>
+    <CustomModal
+      isOpen={isOpen}
+      setIsOpen={setIsOpen}
+      title={productContent.name}
+    >
       <>
-        <ScrollView>
-          <View className="mx-2 mt-6 ">
-            <View className="flex flex-row">
-              <View className="w-36 h-28">
-                <Image
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                  }}
-                  source={{ uri: productContent.image.filename }}
-                />
-              </View>
-              <View className="flex flex-col justify-between ml-3">
-                <View>
-                  <Text className="text-lg font-bold">
-                    {productContent.name}
-                  </Text>
-                  <Text>{productContent?.unit}</Text>
-                  <Text>Origin: {productContent.origin}</Text>
-                </View>
-                <Text className="font-bold">
-                  {productContent.price}
-                  {businessRules.currency}
-                </Text>
-              </View>
-            </View>
-            <View className="mt-3">
-              <Text className="text-lg font-medium">Description</Text>
-              <Text className="mt-3">
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                Incidunt quis totam deserunt accusamus vel voluptate optio
-                quibusdam dolores unde omnis. Voluptate illo magni cumque nobis?
-                Aliquam laboriosam officia dolorum suscipit!
+        <View className="bg-white">
+          <View className="flex flex-row items-center -mt-1">
+            <View className="px-2 ml-4 bg-red-500 rounded-full">
+              <Text className="text-lg font-bold text-white">
+                {productContent.price}
+                {businessRules.currency}
               </Text>
             </View>
+            <Text className="ml-4">{productContent.unit}</Text>
           </View>
-        </ScrollView>
-        <View className="absolute w-full border-t border-gray-400 bottom-6">
-          <View className="flex flex-row items-center justify-between px-4 mt-4">
+          <Text className="mx-4 my-3 text-justify">
+            {productContent.description}
+          </Text>
+        </View>
+        <View className="px-4 pb-16 mt-2 bg-white">
+          <View className="flex flex-row items-center justify-between mt-4">
             <Text className="text-lg font-medium">Add to basket</Text>
             <Counter
               counter={counterValue}

@@ -29,17 +29,34 @@ const CustomModal = ({
     setIsOpen(!isOpen);
   };
   return (
-    <Modal onBackdropPress={toggleModal} isVisible={isOpen}>
-      <View className="rounded-md bg-slate-200 h-2/3">
-        <View className="flex flex-row items-center justify-between px-4 pt-4 pb-3 bg-white border-b border-gray-400 rounded-md">
-          <Text className="text-xl ">{title}</Text>
-          <TouchableOpacity onPress={toggleModal}>
-            <Ionicons name="close" size={28} color={appStyle.iconColor} />
-          </TouchableOpacity>
+    <View className="bg-white">
+      <Modal
+        style={{
+          width: "100%",
+          position: "absolute",
+          marginBottom: -20,
+          backgroundColor: "#e2e8f0",
+          bottom: 0,
+          left: 0,
+          marginLeft: 0,
+        }}
+        onBackdropPress={toggleModal}
+        isVisible={isOpen}
+      >
+        <View className="rounded-md">
+          <View className="flex flex-row items-center justify-between px-4 pt-4 pb-3 bg-white rounded-lg">
+            <Text className="text-2xl font-bold">{title}</Text>
+            <TouchableOpacity
+              onPress={toggleModal}
+              className="p-1 rounded-full bg-slate-200"
+            >
+              <Ionicons name="close" size={28} color={appStyle.iconColor} />
+            </TouchableOpacity>
+          </View>
+          {children}
         </View>
-        {children}
-      </View>
-    </Modal>
+      </Modal>
+    </View>
   );
 };
 

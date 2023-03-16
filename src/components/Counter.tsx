@@ -13,7 +13,7 @@ const Counter = ({ counter, removeItem, addItem }: CounterProps) => {
       {counter > 0 && (
         <>
           <Pressable className="px-3 py-1.5" onPress={removeItem}>
-            <Text className="text-xl ">-</Text>
+            <Text className="text-xl">-</Text>
           </Pressable>
           <Text className="ml-3 text-lg ">{counter}</Text>
         </>
