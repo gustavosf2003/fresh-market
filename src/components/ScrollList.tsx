@@ -6,15 +6,18 @@ interface ScrollListProps {
   categories: string[];
   currentCategory: string;
   categoryChange: React.Dispatch<React.SetStateAction<string>>;
+  nativeWindStyle: string;
 }
 
 const ScrollList = ({
   categories,
   currentCategory,
   categoryChange,
+  nativeWindStyle,
 }: ScrollListProps) => {
   return (
     <ScrollView
+      className={nativeWindStyle}
       contentContainerStyle={{ paddingHorizontal: 16 }}
       horizontal={true}
       showsHorizontalScrollIndicator={false}
