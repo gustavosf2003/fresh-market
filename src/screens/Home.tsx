@@ -16,6 +16,7 @@ import { useIsFocused } from "@react-navigation/native";
 import { GET_CATEGORIES } from "@app/queries/categories";
 import { Categories } from "@app/interfaces/categories";
 import ProductsLoader from "../components/loader/ProductsLoader";
+import SearchBar from "../components/search/SearchBar";
 
 async function getStorageCart(
   setCart: React.Dispatch<React.SetStateAction<never[]>>
@@ -32,7 +33,9 @@ const Home: React.FC = () => {
   const [category, setCategory] = useState("");
   const [savedProducts, setSavedProducts] = useState([]);
   const isHomePageFocused = useIsFocused();
-  const { loading, error, data } = useQuery(GET_PRODUCTS);
+  const { loading, error, data } = useQuery(GET_PRODUCTS, {
+    variables: { perPage: 40 },
+  });
   const {
     loading: categoriesLoading,
     error: categoriesError,
@@ -73,7 +76,9 @@ const Home: React.FC = () => {
         {error && <Text>{error.toString()}</Text>}
         {data && categoriesData && (
           <>
+            <SearchBar />
             <ScrollList
+              nativeWindStyle="mt-4 z-10"
               categories={categories.reverse()}
               currentCategory={category}
               categoryChange={setCategory}
