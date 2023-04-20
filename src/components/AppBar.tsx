@@ -25,15 +25,15 @@ const AppBar: React.FC = () => {
         >
           Fresh Market
         </Text>
-        {route.name != RoutesName.products ||
-          (route.name != RoutesName.processing && (
+        {route.name != RoutesName.products &&
+          route.name != RoutesName.processing && (
             <FontAwesome
               onPress={() => navigation.navigate(RoutesName.products as never)}
               name="shopping-basket"
               size={24}
               color="white"
             />
-          ))}
+          )}
       </View>
     </SafeAreaView>
   );
