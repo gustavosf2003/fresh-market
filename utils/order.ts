@@ -8,7 +8,6 @@ interface Order {
   products: Product[];
   tips: number;
   deliveryFee: number;
-  discount: number;
   price: number;
 }
 
@@ -23,11 +22,10 @@ export function sendOrder(
   let order: Order = {
     products: products,
     tips: tips,
-    deliveryFee: deliveryFee,
-    discount: discount,
     price: calculateTotalCost(products, deliveryFee, discount),
+    deliveryFee: deliveryFee,
   };
   console.log(order);
-  navigation.navigate(RoutesName.processing as never);
-  setStorageData(StorageKeys.products, "[]");
+  // navigation.navigate(RoutesName.processing as never);
+  // setStorageData(StorageKeys.products, "[]");
 }

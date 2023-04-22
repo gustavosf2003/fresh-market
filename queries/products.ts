@@ -1,8 +1,12 @@
 import { gql } from "@apollo/react-hooks";
 
 export const GET_PRODUCTS = gql`
-  {
-    ProductItems(sort_by: "name", per_page: 40) {
+  query GetProducts($searchTerm: String, $perPage: Int) {
+    ProductItems(
+      sort_by: "name"
+      per_page: $perPage
+      search_term: $searchTerm
+    ) {
       items {
         id
         content {

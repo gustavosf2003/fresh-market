@@ -8,6 +8,7 @@ import Counter from "./Counter";
 import { parseCurrency } from "../../utils/prices";
 import CustomModal from "./CustomModal";
 import ProductModal from "./ProductModal";
+import { SnackBarContext } from "../../context/snackbar";
 
 export interface ProductCardProps {
   savedProducts: Product[];
@@ -30,6 +31,7 @@ function getQuantityByProductId(
 
 const ProductCard = ({ product, quantity, showDynamicPrice }: ProductProp) => {
   const { savedProducts, setSavedProducts } = useContext(ProductContext);
+  const { setTitle } = useContext(SnackBarContext);
   const [counterValue, setCounterValue] = useState<number>(0);
   var productContent = product.content;
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -90,6 +92,8 @@ const ProductCard = ({ product, quantity, showDynamicPrice }: ProductProp) => {
             if (counterValue < 9) {
               setCounterValue(counterValue + 1);
               addToCart({ product, savedProducts, setSavedProducts });
+            } else {
+              setTitle("You cannot add more than 9 units");
             }
           }}
         />

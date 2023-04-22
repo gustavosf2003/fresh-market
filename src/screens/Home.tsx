@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { View, Text, ScrollView, Button } from "react-native";
 import Layout from "../components/Layout";
 import ScrollList from "../components/ScrollList";
@@ -16,6 +16,7 @@ import { useIsFocused } from "@react-navigation/native";
 import { GET_CATEGORIES } from "@app/queries/categories";
 import { Categories } from "@app/interfaces/categories";
 import ProductsLoader from "../components/loader/ProductsLoader";
+import SearchBar from "../components/search/SearchBar";
 
 async function getStorageCart(
   setCart: React.Dispatch<React.SetStateAction<never[]>>
@@ -30,14 +31,12 @@ async function getStorageCart(
 
 const Home: React.FC = () => {
   const [category, setCategory] = useState("");
-  const [savedProducts, setSavedProducts] = useState([]);
+  const { savedProducts, setSavedProducts } = useContext(ProductContext);
   const isHomePageFocused = useIsFocused();
-  const { loading, error, data } = useQuery(GET_PRODUCTS);
-  const {
-    loading: categoriesLoading,
-    error: categoriesError,
-    data: categoriesData,
-  } = useQuery(GET_CATEGORIES);
+  const { loading, error, data } = useQuery(GET_PRODUCTS, {
+    variables: { perPage: 40 },
+  });
+  const { data: categoriesData } = useQuery(GET_CATEGORIES);
   const categories = categoriesData?.CategoryItems.items.map(
     (item: Categories) => item.name
   );
@@ -67,33 +66,32 @@ const Home: React.FC = () => {
       ));
   }
   return (
-    <ProductContext.Provider value={{ savedProducts, setSavedProducts }}>
-      <Layout nativeWindStyle="mt-6">
-        {loading && <ProductsLoader />}
-        {error && <Text>{error.toString()}</Text>}
-        {data && categoriesData && (
-          <>
-            <ScrollList
-              categories={categories.reverse()}
-              currentCategory={category}
-              categoryChange={setCategory}
-            />
-            <View className="mt-3 border-b border-gray-300" />
-
-            <ScrollView
-              showsVerticalScrollIndicator={false}
-              contentContainerStyle={{ paddingBottom: 320, paddingTop: 24 }}
-              className="mx-5"
-            >
-              <Text className="text-xl font-bold">
-                {filteredProducts.length} products
-              </Text>
-              {filteredProducts}
-            </ScrollView>
-          </>
-        )}
-      </Layout>
-    </ProductContext.Provider>
+    <Layout nativeWindStyle="mt-6">
+      {loading && <ProductsLoader />}
+      {error && <Text>{error.toString()}</Text>}
+      {data && categoriesData && (
+        <>
+          <SearchBar />
+          <ScrollList
+            nativeWindStyle="z-10 mt-4"
+            categories={categories.reverse()}
+            currentCategory={category}
+            categoryChange={setCategory}
+          />
+          <View className="mt-3 border-b border-gray-300" />
+          <ScrollView
+            showsVerticalScrollIndicator={false}
+            contentContainerStyle={{ paddingBottom: 320, paddingTop: 24 }}
+            className="mx-5"
+          >
+            <Text className="text-xl font-bold">
+              {filteredProducts.length} products
+            </Text>
+            {filteredProducts}
+          </ScrollView>
+        </>
+      )}
+    </Layout>
   );
 };
 export default Home;
