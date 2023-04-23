@@ -21,7 +21,7 @@ export interface ProductProp {
   showDynamicPrice?: boolean;
 }
 
-function getQuantityByProductId(
+export function getQuantityByProductId(
   items: Product[],
   id: number
 ): number | undefined {
