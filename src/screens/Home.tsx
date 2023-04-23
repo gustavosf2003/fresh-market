@@ -73,7 +73,7 @@ const Home: React.FC = () => {
         <>
           <SearchBar />
           <ScrollList
-            nativeWindStyle="z-10 mt-4"
+            nativeWindStyle="mt-4"
             categories={categories.reverse()}
             currentCategory={category}
             categoryChange={setCategory}
@@ -81,7 +81,7 @@ const Home: React.FC = () => {
           <View className="mt-3 border-b border-gray-300" />
           <ScrollView
             showsVerticalScrollIndicator={false}
-            contentContainerStyle={{ paddingBottom: 320, paddingTop: 24 }}
+            contentContainerStyle={{ paddingBottom: 340, paddingTop: 24 }}
             className="mx-5"
           >
             <Text className="text-xl font-bold">
