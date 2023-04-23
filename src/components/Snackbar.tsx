@@ -18,9 +18,6 @@ export default function Snackbar({
     setTimeout(() => {
       setTitle("");
     }, time);
-    return () => {
-      setTitle("");
-    };
   }, []);
   return (
     <View className="absolute z-20 w-full bottom-[100px]">
