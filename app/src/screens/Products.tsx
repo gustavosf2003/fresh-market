@@ -18,10 +18,10 @@ import Costs from "../components/products/Costs";
 import Tips from "../components/products/Tips";
 import Review from "../components/products/Review";
 import { totalProducts } from "@app/utils/manageCart";
-import { sendOrder } from "@app/utils/order";
 import { useNavigation } from "@react-navigation/native";
 import { Feather } from "@expo/vector-icons";
 import { appStyle } from "@app/styles";
+import { sendOrder } from "@app/services/order";
 
 const Products: React.FC = () => {
   const { savedProducts, setSavedProducts } = useContext(ProductContext);
