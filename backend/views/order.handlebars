@@ -1,0 +1,67 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Order Confirmation</title>
+    <style>
+      body { font-family: Arial, sans-serif; margin: 0; padding: 0;
+      background-color: #d6d6d5; } .header-image { height: 200px; width: 100%;
+      background-image:
+      url("https://www.healthyeating.org/images/default-source/home-0.0/nutrition-topics-2.0/general-nutrition-wellness/2-2-2-3foodgroups_fruits_detailfeature.jpg?sfvrsn=64942d53_4");
+      background-repeat: no-repeat; background-position: center;
+      background-size: cover; } .container { margin: 0 auto; max-width: 600px;
+      padding: 20px; background-color: white; box-shadow: 0 0 10px rgba(0, 0, 0,
+      0.1); border-radius: 5px; margin-top: -100px; position: relative; } h1 {
+      color: #7fb196; font-size: 24px; margin-bottom: 20px; } h2 { color:
+      #7fb196; font-size: 16px; margin-bottom: 10px; } p { margin: 0;
+      margin-bottom: 10px; } .total-price { font-weight: bold; color: #7fb196; }
+      .order-details { margin-bottom: 20px; } .footer { text-align: center;
+      margin-top: 20px; color: #ccc; font-size: 12px; }
+
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header-image"></div>
+      <h1>Hey {{name}}</h1>
+      <p>
+        Thank you for choosing Fresh Market as your grocery store! We're excited
+        to let you know that your order has been confirmed and is on the way to
+        <i>
+          <u>{{address}}</u>
+        </i>
+        .
+      </p>
+      <div class="order-details">
+        <h2>Order Details</h2>
+        <p>Order date: {{date}}</p>
+        <p>Products:
+          <br />
+          {{#each products}}
+            <span>
+              &#x2022;
+              {{this.quantity}}x
+              {{this.content.name}}
+              ({{this.content.unit}})
+            </span>
+            <br />
+          {{/each}}
+        </p>
+
+        <p>Total price: <u class="total-price">{{price}} €</u></p>
+      </div>
+      <p>
+        If you have any questions or concerns, please don't hesitate to contact
+        us at
+        <a
+          href="mailto: freshmarket.lisbon@gmail.com"
+        >freshmarket.lisbon@gmail.com</a>
+      </p>
+    </div>
+    <div class="footer">
+      <p>
+        This email was sent by Fresh Market, Rua João do Nascimento Costa -
+        Lisbon
+      </p>
+    </div>
+  </body>
+</html>
