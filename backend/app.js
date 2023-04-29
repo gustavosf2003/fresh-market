@@ -16,6 +16,10 @@ app.post("/order", (req, res) => {
   res.send(`Order done`);
 });
 
+app.get("/", (req, res) => {
+  res.send(`Api running`);
+});
+
 app.listen(PORT, () => {
   console.log("Server listening on port: " + PORT);
 });
