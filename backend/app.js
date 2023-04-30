@@ -12,7 +12,7 @@ app.use(express.json());
 
 app.post("/order", (req, res) => {
   let order = req.body;
-  sendOrderConfirmationEmail(order);
+  sendOrderConfirmationEmail(res, order);
   res.send(`Order done`);
 });
 

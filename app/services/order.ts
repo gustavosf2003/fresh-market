@@ -37,7 +37,7 @@ export async function sendOrder(
     deliveryFee: deliveryFee,
   };
   try {
-    const response = await axios.post("http://localhost:3000/order", order);
+    const response = await axios.post("http://localhost:3030/order", order);
     console.log(response.data);
     navigation.navigate(RoutesName.processing as never);
     setStorageData(StorageKeys.products, "[]");

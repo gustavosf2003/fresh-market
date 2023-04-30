@@ -11,7 +11,7 @@ let transporter = nodemailer.createTransport({
   },
 });
 
-function sendOrderConfirmationEmail({ ...order }) {
+function sendOrderConfirmationEmail(res, { ...order }) {
   try {
     const data = {
       name: order.name,
@@ -33,7 +33,7 @@ function sendOrderConfirmationEmail({ ...order }) {
 
     transporter.sendMail(info, (error, info) => {
       if (error) {
-        console.log(error);
+        return res.status(500).json({ message: "Something went wrong: " + e });
       }
     });
   } catch (e) {
