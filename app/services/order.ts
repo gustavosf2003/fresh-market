@@ -2,6 +2,7 @@ import axios from "axios";
 import { NavigationProp } from "@react-navigation/native";
 import { RoutesName } from "../config/constants";
 import { calculateTotalCost } from "@app/utils/prices";
+import { API_ENDPOINT } from "@env";
 import {
   StorageKeys,
   getStorageData,
@@ -37,7 +38,7 @@ export async function sendOrder(
     deliveryFee: deliveryFee,
   };
   try {
-    const response = await axios.post("http://localhost:3030/order", order);
+    const response = await axios.post(`${API_ENDPOINT}/order`, order);
     console.log(response.data);
     navigation.navigate(RoutesName.processing as never);
     setStorageData(StorageKeys.products, "[]");
