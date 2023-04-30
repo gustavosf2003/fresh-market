@@ -9,7 +9,7 @@
     "nodemon": "^2.0.22"
   },
   "dependencies": {
-    "express-handlebars": "^7.0.7",
+    "express-handlebars": "^6.0.6",
     "handlebars": "^4.7.7",
     "nodemailer": "^6.9.1"
   }
