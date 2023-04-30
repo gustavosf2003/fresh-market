@@ -42,6 +42,7 @@ const ProfileForm: React.FC = () => {
         />
         <Input
           label="Email"
+          autoCapitalize="none"
           autoCorrect={false}
           defaultValue={email}
           onChangeText={(value) => {
