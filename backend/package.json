@@ -9,6 +9,9 @@
     "nodemon": "^2.0.22"
   },
   "dependencies": {
+    "cors": "^2.8.5",
+    "crypt": "^0.0.2",
+    "crypto": "^1.0.1",
     "express-handlebars": "^6.0.6",
     "handlebars": "^4.7.7",
     "nodemailer": "^6.9.1"
