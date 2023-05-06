@@ -46,8 +46,8 @@ export default function AuthenticateForm() {
     }
   });
   return (
-    <form onSubmit={onLogin} className="flex flex-col">
-      <div className="flex flex-col gap-3">
+    <form onSubmit={onLogin} className="flex flex-col w-3/4 mt-20 lg:w-1/4">
+      <div className="flex flex-col gap-3 ">
         <Controller
           control={control}
           name="login"
@@ -55,12 +55,8 @@ export default function AuthenticateForm() {
           render={({ fieldState: { error } }) => (
             <InputText
               label="Login"
-              {...register("login", { required: true })}
-              error={
-                errors.login?.type === "required"
-                  ? "Login is required"
-                  : error?.message
-              }
+              {...register("login", { required: "Username is required" })}
+              error={error?.message}
             />
           )}
         />
@@ -72,18 +68,14 @@ export default function AuthenticateForm() {
             <InputText
               label="Password"
               type="password"
-              {...register("password", { required: true })}
-              error={
-                errors.password?.type === "required"
-                  ? "Password is required"
-                  : error?.message
-              }
+              {...register("password", { required: "Password is required" })}
+              error={error?.message}
             />
           )}
         />
       </div>
-      <Button styledClassName="w-2 mt-4" onClick={onLogin}>
-        Send form
+      <Button className="mt-8" onClick={onLogin}>
+        Log in
       </Button>
     </form>
   );
