@@ -4,14 +4,19 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import { RoutesName } from "@/config/routes";
 import { StorageKeys } from "@/config/constants";
+import ClipBoard from "../../public/icons/clipboard.svg";
+import Cart from "../../public/icons/cart.svg";
+import Users from "../../public/icons/users.svg";
+import clsx from "clsx";
 
 const menuItems = [
-  { label: "Dashboard", href: "/" },
-  { label: "Users", href: "/users" },
-  { label: "Orders", href: "/orders" },
+  { label: "Dashboard", href: "/", icon: ClipBoard },
+  { label: "Users", href: "/users", icon: Users },
+  { label: "Orders", href: "/orders", icon: Cart },
 ];
 
 export const SideMenu = () => {
+  const router = useRouter();
   const [menuOpen, triggerMenu] = useState(false);
   return (
     <nav className="fixed left-0 top-0 flex min-h-screen w-[248px] flex-shrink-0 flex-col bg-gray-800 py-4">
@@ -22,7 +27,18 @@ export const SideMenu = () => {
         {menuItems.map((item) => {
           return (
             <Link key={item.label} href={item.href}>
-              <span className="flex items-center gap-3 p-2 pr-3 text-white rounded-md hover:bg-gray-900">
+              <span
+                className={clsx(
+                  "flex items-center gap-3 p-2 pr-3 text-white rounded-md hover:bg-gray-900",
+                  item.href === router.pathname && "bg-gray-900"
+                )}
+              >
+                <Image
+                  src={item.icon}
+                  width={20}
+                  height={20}
+                  alt={item.label}
+                />
                 <p>{item.label}</p>
               </span>
             </Link>
@@ -82,12 +98,12 @@ export const MenuSidebar = () => {
   };
   return (
     <Menu className="bg-gray-800 text-white -mt-6 w-44 left-[252px]">
-      <MenuItem>
-        <Link href="/profile">Profile</Link>
-      </MenuItem>
-      <MenuItem>
-        <button onClick={() => logout()}>Log out</button>
-      </MenuItem>
+      <Link href="/profile">
+        <MenuItem>Profile</MenuItem>
+      </Link>
+      <button onClick={() => logout()}>
+        <MenuItem>Log out</MenuItem>
+      </button>
     </Menu>
   );
 };
