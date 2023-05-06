@@ -1,6 +1,5 @@
 import Layout from "@/components/Layout";
-import useAuth from "@/hooks/useAuth";
 
 export default function Users() {
-  return <Layout>Users</Layout>;
+  return <Layout className="flex items-start !flex-row">Users</Layout>;
 }
