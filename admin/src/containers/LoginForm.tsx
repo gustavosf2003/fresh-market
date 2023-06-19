@@ -46,22 +46,20 @@ export default function AuthenticateForm() {
     }
   });
   return (
-    <form onSubmit={onLogin} className="flex flex-col">
-      <div className="flex flex-col gap-3">
+    <form onSubmit={onLogin} className="flex flex-col w-3/4 mt-20 lg:w-1/4">
+      <div className="flex flex-col gap-3 ">
         <Controller
           control={control}
           name="login"
           rules={{ required: true }}
           render={({ fieldState: { error } }) => (
-            <InputText
-              label="Login"
-              {...register("login", { required: true })}
-              error={
-                errors.login?.type === "required"
-                  ? "Login is required"
-                  : error?.message
-              }
-            />
+            <div className="h-[82px]">
+              <InputText
+                label="Login"
+                {...register("login", { required: "Username is required" })}
+                error={error?.message}
+              />
+            </div>
           )}
         />
         <Controller
@@ -69,21 +67,19 @@ export default function AuthenticateForm() {
           name="login"
           rules={{ required: true }}
           render={({ fieldState: { error } }) => (
-            <InputText
-              label="Password"
-              type="password"
-              {...register("password", { required: true })}
-              error={
-                errors.password?.type === "required"
-                  ? "Password is required"
-                  : error?.message
-              }
-            />
+            <div className="h-[82px]">
+              <InputText
+                label="Password"
+                type="password"
+                {...register("password", { required: "Password is required" })}
+                error={error?.message}
+              />
+            </div>
           )}
         />
       </div>
-      <Button styledClassName="w-2 mt-4" onClick={onLogin}>
-        Send form
+      <Button className="mt-8" onClick={onLogin}>
+        Log in
       </Button>
     </form>
   );

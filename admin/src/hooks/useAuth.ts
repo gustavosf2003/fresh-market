@@ -1,4 +1,4 @@
-import { useLayoutEffect } from "react";
+import { useEffect } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
 import { StorageKeys } from "@/config/constants";
@@ -11,10 +11,10 @@ interface AuthResponse {
 const useAuth = () => {
   const router = useRouter();
   const logout = () => {
-    localStorage.getItem(StorageKeys.token);
+    localStorage.removeItem(StorageKeys.token);
     router.push(RoutesName.login);
   };
-  useLayoutEffect(() => {
+  useEffect(() => {
     const checkAuth = async () => {
       try {
         const response = await axios.post<AuthResponse>(

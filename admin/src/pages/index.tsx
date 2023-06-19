@@ -1,10 +1,5 @@
-import useAuth from "@/hooks/useAuth";
+import Layout from "@/components/Layout";
 
 export default function Home() {
-  useAuth();
-  return (
-    <main className="text-primary">
-      <h1>dashboard</h1>
-    </main>
-  );
+  return <Layout>Dashboard</Layout>;
 }

@@ -23,7 +23,6 @@ app.post("/admin/login", async (req, res) => {
   }
 });
 app.post("/admin/isAuthenticated", async (req, res) => {
-  console.log("called");
   const userToken = req.body.token;
   res.send({ isAuthenticated: isAuthenticated(userToken) });
 });
