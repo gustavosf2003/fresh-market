@@ -17,7 +17,7 @@ export const Button = ({
     <button
       disabled={disabled || loading}
       className={clsx(
-        "px-4 py-2 font-medium flex text-md items-center justify-center text-primaryWhite disabled:opacity-40 disabled:cursor-not-allowed bg-primary rounded-md",
+        "px-4 py-2 font-medium gap-2.5 flex text-md items-center justify-center text-primaryWhite disabled:opacity-40 disabled:cursor-not-allowed bg-primary rounded-md",
         className
       )}
       {...rest}

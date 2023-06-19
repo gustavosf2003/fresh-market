@@ -2,7 +2,7 @@ import { SideMenu } from "@/components/SideMenu";
 import useAuth from "@/hooks/useAuth";
 import clsx from "clsx";
 
-export default function Layout({ children, className }) {
+export default function Layout({ children, className = "" }) {
   useAuth();
   return (
     <div className="relative flex">

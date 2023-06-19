@@ -53,11 +53,13 @@ export default function AuthenticateForm() {
           name="login"
           rules={{ required: true }}
           render={({ fieldState: { error } }) => (
-            <InputText
-              label="Login"
-              {...register("login", { required: "Username is required" })}
-              error={error?.message}
-            />
+            <div className="h-[82px]">
+              <InputText
+                label="Login"
+                {...register("login", { required: "Username is required" })}
+                error={error?.message}
+              />
+            </div>
           )}
         />
         <Controller
@@ -65,12 +67,14 @@ export default function AuthenticateForm() {
           name="login"
           rules={{ required: true }}
           render={({ fieldState: { error } }) => (
-            <InputText
-              label="Password"
-              type="password"
-              {...register("password", { required: "Password is required" })}
-              error={error?.message}
-            />
+            <div className="h-[82px]">
+              <InputText
+                label="Password"
+                type="password"
+                {...register("password", { required: "Password is required" })}
+                error={error?.message}
+              />
+            </div>
           )}
         />
       </div>
