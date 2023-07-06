@@ -24,7 +24,7 @@ const Layout = ({
       <SnackBarContext.Provider value={{ title, setTitle }}>
         {title.length > 0 && <Snackbar title={title} />}
         <AppBar />
-        <View className={clsx(nativeWindStyle)}>{children}</View>
+        <View className={nativeWindStyle}>{children}</View>
         {bottomBar && <BottomBar />}
       </SnackBarContext.Provider>
     </>

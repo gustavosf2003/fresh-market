@@ -41,7 +41,6 @@ const Home: React.FC = () => {
     (item: Categories) => item.name
   );
   const products = data?.ProductItems.items;
-
   useEffect(() => {
     if (category.length == 0) {
       setCategory("fruits");
@@ -81,8 +80,8 @@ const Home: React.FC = () => {
           <View className="mt-3 border-b border-gray-300" />
           <ScrollView
             showsVerticalScrollIndicator={false}
-            contentContainerStyle={{ paddingBottom: 340, paddingTop: 24 }}
-            className="mx-5"
+            contentContainerStyle={{ paddingBottom: 500, paddingTop: 12 }}
+            className="mx-5 "
           >
             <Text className="text-xl font-bold">
               {filteredProducts.length} products
