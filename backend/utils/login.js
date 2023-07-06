@@ -5,14 +5,14 @@ function createHash(name) {
 }
 
 function login(user) {
-  if (user.login === "gsferreira2003@gmail.com" && user.password === "test") {
+  if (user.login === "user@example.com" && user.password === "string") {
     return createHash(user.login);
   }
   return undefined;
 }
 
 function isAuthenticated(token) {
-  if (token === createHash("gsferreira2003@gmail.com")) {
+  if (token === createHash("user@example.com")) {
     return true;
   }
   return false;
