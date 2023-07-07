@@ -1,13 +1,13 @@
-import React, { useState } from "react";
-import { Text, View, TouchableOpacity, Image } from "react-native";
-import Layout from "../components/Layout";
-import ProfileCategory from "../components/ProfileCategory";
-import ProfileForm from "../components/ProfileForm";
-import Orders from "../components/Orders";
-import AboutUs from "../components/AboutUs";
+import React, { useState } from 'react';
+import { Text, View, TouchableOpacity, Image } from 'react-native';
+import Layout from '../components/Layout';
+import ProfileCategory from '../components/ProfileCategory';
+import AboutUs from '../components/AboutUs';
+import ProfileForm from '../components/ProfileForm';
+import Orders from '../components/Orders';
 
 enum Categories {
-  Profile = 0, // Added missing double quotes around 0
+  Profile = 0,
   Orders = 1,
   AboutUs = 2,
 }
@@ -29,10 +29,7 @@ const User: React.FC = () => {
   const [profileCategory, setProfileCategory] = useState(Categories.Profile);
   return (
     <Layout>
-      <ProfileCategory
-        currentCategory={profileCategory}
-        categoryChange={setProfileCategory}
-      />
+      <ProfileCategory currentCategory={profileCategory} categoryChange={setProfileCategory} />
       <View className="border-b border-gray-300" />
       <View className="mx-8 mt-4">{getPageContent(profileCategory)}</View>
     </Layout>

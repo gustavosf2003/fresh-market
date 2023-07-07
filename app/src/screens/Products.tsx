@@ -5,10 +5,8 @@ import {
 } from "@app/utils/storage";
 import React, { useContext, useEffect, useState } from "react";
 import { Text, View, ScrollView, TouchableOpacity } from "react-native";
-import { Product } from "@app/interfaces/products";
 import { ProductContext } from "@app/context/product";
 import { businessRules } from "@app/config/constants";
-import LottieView from "lottie-react-native";
 import StretchedButton from "../components/StretchedButton";
 import ProductCard from "../components/ProductCard";
 import Card from "../components/Card";
@@ -22,6 +20,7 @@ import { useNavigation } from "@react-navigation/native";
 import { Feather } from "@expo/vector-icons";
 import { appStyle } from "@app/styles";
 import { sendOrder } from "@app/services/order";
+import NoProducts from "../components/products/NoProducts";
 
 const Products: React.FC = () => {
   const { savedProducts, setSavedProducts } = useContext(ProductContext);
@@ -107,20 +106,7 @@ const Products: React.FC = () => {
               <Review products={savedProducts} tips={tipValue} />
             </>
           ) : (
-            <View className="flex items-center text-center mt-28">
-              <LottieView
-                source={require("@app/assets/gifs/phone.json")}
-                autoPlay
-                loop
-                style={{ width: 28, height: 280 }}
-              />
-              <Text className="mt-10 text-2xl text-center">
-                There is no saved product.
-              </Text>
-              <Text className="mt-2 text-2xl text-center ">
-                Start saving some products
-              </Text>
-            </View>
+            <NoProducts />
           )}
         </ScrollView>
       </Layout>

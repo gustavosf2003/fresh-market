@@ -2,7 +2,7 @@ import { gql } from "@apollo/react-hooks";
 
 export const GET_CATEGORIES = gql`
   {
-    CategoryItems {
+    CategoryItems(sort_by: "updated_at") {
       items {
         id
         name

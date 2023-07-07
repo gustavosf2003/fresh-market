@@ -1,10 +1,8 @@
-Fresh Market React Native App
-=============================
+# Fresh Market React Native App
 
 This is a mobile app built using React Native and Expo that allows users to purchase products online from a grocery store. The app uses Nativewind as a styling library to provide a consistent design across multiple platforms.
 
-Getting Started
----------------
+## Getting Started
 
 To get started with the Fresh Market app, follow these steps:
 
@@ -17,26 +15,23 @@ To get started with the Fresh Market app, follow these steps:
 
 The `expo start` command will open a web page in your browser where you can launch the app in an emulator or on your own device using the Expo Go app.
 
-Using the App
--------------
+## Using the App
 
-The Fresh Market app is designed to allow users to purchase products from a grocery store. When you launch the app, you will be presented with a home screen that displays featured products and categories. From there, you can browse products by category  and add products to your cart.
+The Fresh Market app is designed to allow users to purchase products from a grocery store. When you launch the app, you will be presented with a home screen that displays featured products and categories. From there, you can browse products by category and add products to your cart.
 
 The app also allows you to create an account, view your order history, and manage your account settings.
 
-Tech Stack
-----------
+## Tech Stack
 
 The Fresh Market app was built using the following technologies:
 
-*   [React Native](https://reactnative.dev/)
-*   [Expo](https://expo.dev/)
-*   [Nativewind](https://nativeweb.dev/docs/styles)
-*   [React Navigation](https://reactnavigation.org/)
-*   [Storyblok](https://www.storyblok.com/home)
+- [React Native](https://reactnative.dev/)
+- [Expo](https://expo.dev/)
+- [Nativewind](https://www.nativewind.dev/)
+- [React Navigation](https://reactnavigation.org/)
+- [Storyblok](https://www.storyblok.com/home)
 
-Contributing
-------------
+## Contributing
 
 If you would like to contribute to the Fresh Market app, please follow these steps:
 
@@ -48,7 +43,6 @@ If you would like to contribute to the Fresh Market app, please follow these ste
 
 Please note that all contributions are subject to review and approval by the project maintainers.
 
-License
--------
+## License
 
 This project is licensed under the [MIT License](LICENSE).
