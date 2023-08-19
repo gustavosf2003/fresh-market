@@ -10,10 +10,11 @@ import Geocoder from "react-native-geocoding";
 import Routes from "./config/routes";
 import { ProductContext } from "./context/product";
 import { storyBlokClient } from "./services/api";
+
 export default function App() {
   Geocoder.init(GOOGLE_MAPS_TOKEN);
-
   const [savedProducts, setSavedProducts] = useState([]);
+
   return (
     <ApolloProvider client={storyBlokClient}>
       <ThemeProvider>

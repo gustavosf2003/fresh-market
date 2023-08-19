@@ -29,6 +29,7 @@ function getPageContent(category: Categories) {
 
 const User: React.FC = () => {
   const [profileCategory, setProfileCategory] = useState(Categories.Profile);
+
   return (
     <Layout>
       <ProfileCategory

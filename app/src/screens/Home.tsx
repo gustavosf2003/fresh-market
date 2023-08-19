@@ -43,6 +43,7 @@ const Home: React.FC = () => {
     (item: Categories) => item.name
   );
   const products = data?.ProductItems.items;
+
   useEffect(() => {
     if (category.length === 0) {
       setCategory("fruits");
@@ -54,11 +55,13 @@ const Home: React.FC = () => {
       getStorageCart(setSavedProducts);
     }
   }, [isHomePageFocused, setSavedProducts]);
+
   useEffect(() => {
     setStorageData(StorageKeys.products, JSON.stringify(savedProducts));
   }, [savedProducts]);
 
   let filteredProducts;
+
   if (data) {
     filteredProducts = products
       .filter((product: Product) => product.content.category.name === category)
@@ -66,6 +69,7 @@ const Home: React.FC = () => {
         <ProductCard key={product.id} product={product} />
       ));
   }
+
   return (
     <Layout nativeWindStyle="mt-6">
       {loading && <ProductsLoader />}

@@ -23,6 +23,8 @@ interface FormData {
   address: string;
 }
 
+const formData = ["name", "email", "address"];
+
 const Register = () => {
   const {
     control,
@@ -34,9 +36,9 @@ const Register = () => {
   const onSubmit = (data: FormData) => {
     if (Object.keys(errors).length === 0) {
       setStorageData(StorageKeys.isRegistered, "true");
-      setStorageData(StorageKeys.name, data.name);
-      setStorageData(StorageKeys.email, data.email);
-      setStorageData(StorageKeys.address, data.address);
+      formData.forEach((item) => {
+        setStorageData(StorageKeys[item], data[item]);
+      });
       navigation.navigate(RoutesName.home as never);
     } else {
       Alert.alert("Error", "There was an error");

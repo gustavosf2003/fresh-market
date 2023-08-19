@@ -12,6 +12,7 @@ const waitingTime = 5000;
 
 const ProcessingOrder: React.FC = () => {
   const navigation = useNavigation();
+
   useEffect(() => {
     const timer = setTimeout(() => {
       navigation.navigate(RoutesName.home as never); // replace 'Home' with the name of your destination screen

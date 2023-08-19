@@ -29,6 +29,7 @@ const Products: React.FC = () => {
   const [tipValue, setTipValue] = useState(0);
   const [address, setAddress] = useState("");
   const navigation = useNavigation();
+
   useEffect(() => {
     const fetchSavedProducts = async () => {
       const data = await getStorageData(StorageKeys.products);
@@ -40,6 +41,7 @@ const Products: React.FC = () => {
     };
     fetchSavedProducts();
   }, [setSavedProducts]);
+
   useEffect(() => {
     setStorageData(StorageKeys.products, JSON.stringify(savedProducts));
   }, [savedProducts]);
