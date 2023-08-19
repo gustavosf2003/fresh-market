@@ -1,5 +1,7 @@
 import React from "react";
-import { ScrollView, View } from "react-native";
+
+import { ScrollView } from "react-native";
+
 import Badge from "./Badge";
 
 interface ScrollListProps {
@@ -20,16 +22,15 @@ const ScrollList = ({
       className={nativeWindStyle}
       contentContainerStyle={{ paddingHorizontal: 16 }}
       horizontal={true}
-      showsHorizontalScrollIndicator={false}
-    >
+      showsHorizontalScrollIndicator={false}>
       {categories.map((category) => {
         return (
           <Badge
             key={category}
             title={category}
-            active={currentCategory == category}
+            active={currentCategory === category}
             badgeChange={categoryChange}
-          ></Badge>
+          />
         );
       })}
     </ScrollView>

@@ -1,10 +1,11 @@
-import React from 'react';
-import Card from '../Card';
-import { View, Text } from 'react-native';
-import { calculateSubtotalCost, calculateTotalCost } from '@app/utils/prices';
-import { businessRules } from '@app/config/constants';
-import { Product } from '@app/interfaces/products';
-import { parseCurrency } from '../../../utils/prices';
+import React from "react";
+
+import { Product } from "@app/interfaces/products";
+import { calculateSubtotalCost, calculateTotalCost } from "@app/utils/prices";
+import { View, Text } from "react-native";
+
+import { parseCurrency } from "../../../utils/prices";
+import Card from "../Card";
 
 interface CostsProps {
   discount: number;
@@ -32,7 +33,11 @@ const Costs = ({ discount, savedProducts, deliveryFee }: CostsProps) => {
       <View className={`border-b border-gray-300 my-3`} />
       <View className="flex flex-row justify-between mt-1.5">
         <Text>Total</Text>
-        <Text>{parseCurrency(calculateTotalCost(savedProducts, deliveryFee, discount))}</Text>
+        <Text>
+          {parseCurrency(
+            calculateTotalCost(savedProducts, deliveryFee, discount)
+          )}
+        </Text>
       </View>
     </Card>
   );

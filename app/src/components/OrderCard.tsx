@@ -1,4 +1,5 @@
 import React from "react";
+
 import { View, Text } from "react-native";
 
 const OrderCard: React.FC = () => {
@@ -14,7 +15,7 @@ const OrderCard: React.FC = () => {
             Products: 3x banana, 2x tuna, 3x salmon, 3x apple, 4x pastel de nata
           </Text>
         </View>
-        <View className="my-3 border border-gray-400"></View>
+        <View className="my-3 border border-gray-400" />
         <View className="flex flex-row items-center justify-between mx-3">
           <Text className="font-semibold">Price: </Text>
           <Text className="font-semibold">10.40$</Text>

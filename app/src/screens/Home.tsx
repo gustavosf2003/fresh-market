@@ -1,21 +1,23 @@
 import React, { useContext, useEffect, useState } from "react";
-import { View, Text, ScrollView, Button } from "react-native";
-import Layout from "../components/Layout";
-import ScrollList from "../components/ScrollList";
-import ProductCard from "../components/ProductCard";
+
 import { useQuery } from "@apollo/react-hooks";
+import { ProductContext } from "@app/context/product";
+import { Categories } from "@app/interfaces/categories";
+import { Product } from "@app/interfaces/products";
+import { GET_CATEGORIES } from "@app/queries/categories";
 import { GET_PRODUCTS } from "@app/queries/products";
 import {
   getStorageData,
   setStorageData,
   StorageKeys,
 } from "@app/utils/storage";
-import { Product } from "@app/interfaces/products";
-import { ProductContext } from "@app/context/product";
 import { useIsFocused } from "@react-navigation/native";
-import { GET_CATEGORIES } from "@app/queries/categories";
-import { Categories } from "@app/interfaces/categories";
+import { View, Text, ScrollView } from "react-native";
+
+import Layout from "../components/Layout";
 import ProductsLoader from "../components/loader/ProductsLoader";
+import ProductCard from "../components/ProductCard";
+import ScrollList from "../components/ScrollList";
 import SearchBar from "../components/search/SearchBar";
 
 async function getStorageCart(
@@ -42,16 +44,16 @@ const Home: React.FC = () => {
   );
   const products = data?.ProductItems.items;
   useEffect(() => {
-    if (category.length == 0) {
+    if (category.length === 0) {
       setCategory("fruits");
     }
-  }, [categories]);
+  }, [categories, category.length]);
 
   useEffect(() => {
     if (isHomePageFocused) {
       getStorageCart(setSavedProducts);
     }
-  }, [isHomePageFocused]);
+  }, [isHomePageFocused, setSavedProducts]);
   useEffect(() => {
     setStorageData(StorageKeys.products, JSON.stringify(savedProducts));
   }, [savedProducts]);
@@ -81,8 +83,7 @@ const Home: React.FC = () => {
           <ScrollView
             showsVerticalScrollIndicator={false}
             contentContainerStyle={{ paddingBottom: 500, paddingTop: 12 }}
-            className="mx-5 "
-          >
+            className="mx-5 ">
             <Text className="text-xl font-bold">
               {filteredProducts.length} products
             </Text>

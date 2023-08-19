@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { View, Text, TouchableOpacity } from "react-native";
+
 import { FontAwesome } from "@expo/vector-icons";
+import { View, Text, TouchableOpacity } from "react-native";
 
 interface DiscountCardProps {
   title: string;
@@ -12,8 +13,7 @@ const DiscountCard = ({ title, description }: DiscountCardProps) => {
   return (
     <TouchableOpacity
       className="pb-2 mb-8 border-b border-b-gray-500"
-      onPress={() => setIsClicked(!isClicked)}
-    >
+      onPress={() => setIsClicked(!isClicked)}>
       <View className="flex flex-row items-center justify-between">
         <Text className="text-lg font-semibold">{title}</Text>
         <FontAwesome

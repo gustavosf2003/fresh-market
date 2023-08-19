@@ -1,9 +1,11 @@
 import React from "react";
-import { View, Text, TouchableOpacity } from "react-native";
-import Card from "../Card";
-import LottieView from "lottie-react-native";
-import Badge from "../Badge";
+
 import { businessRules } from "@app/config/constants";
+import LottieView from "lottie-react-native";
+import { View, Text } from "react-native";
+
+import Badge from "../Badge";
+import Card from "../Card";
 
 interface TipProps {
   tip: number;
@@ -30,12 +32,12 @@ const Tips = ({ tip, setTip }: TipProps) => {
       </View>
       <View className="flex flex-row mt-2 ml-3">
         {tips.map((item) => {
-          if (item == 0) {
+          if (item === 0) {
             return (
               <Badge
                 key={item}
                 title="No"
-                active={tip == item}
+                active={tip === item}
                 badgeChange={() => setTip(0)}
               />
             );
@@ -44,7 +46,7 @@ const Tips = ({ tip, setTip }: TipProps) => {
             <Badge
               key={item}
               title={item.toString()}
-              active={tip == item}
+              active={tip === item}
               badgeChange={() => setTip(item)}
             />
           );

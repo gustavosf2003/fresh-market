@@ -1,6 +1,7 @@
-import clsx from "clsx";
 import React from "react";
-import { View, Text, TouchableOpacity } from "react-native";
+
+import clsx from "clsx";
+import { Text, TouchableOpacity } from "react-native";
 
 interface ButtonProps {
   children: React.ReactNode;
@@ -19,8 +20,7 @@ const StretchedButton = ({
       className={clsx(
         "flex items-center justify-center w-full h-12 rounded-lg bg-primary",
         nativeWindStyle
-      )}
-    >
+      )}>
       <Text className="text-lg font-bold text-white">{children}</Text>
     </TouchableOpacity>
   );

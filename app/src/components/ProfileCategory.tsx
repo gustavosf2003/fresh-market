@@ -1,5 +1,6 @@
-import clsx from "clsx";
 import React from "react";
+
+import clsx from "clsx";
 import { TouchableOpacity, View, Image, Text } from "react-native";
 
 interface ProfileCategoryProps {
@@ -36,8 +37,7 @@ const ProfileCategory = ({
             className={clsx(
               "flex items-center p-4 rounded-lg",
               currentCategory === item.id ? "bg-slate-300" : "bg-slate-200"
-            )}
-          >
+            )}>
             <Image className="w-12 h-12" source={item.image} />
             <Text className="mt-2">{item.name}</Text>
           </TouchableOpacity>

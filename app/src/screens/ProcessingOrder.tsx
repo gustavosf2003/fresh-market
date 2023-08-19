@@ -1,10 +1,12 @@
 import React from "react";
-import { View, Text } from "react-native";
-import Layout from "../components/Layout";
-import { useNavigation } from "@react-navigation/native";
 import { useEffect } from "react";
+
 import { RoutesName } from "@app/config/constants";
+import { useNavigation } from "@react-navigation/native";
 import LottieView from "lottie-react-native";
+import { View, Text } from "react-native";
+
+import Layout from "../components/Layout";
 
 const waitingTime = 5000;
 

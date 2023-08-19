@@ -1,6 +1,7 @@
 import React from "react";
-import { View } from "react-native";
+
 import { clsx } from "clsx";
+import { View } from "react-native";
 
 interface CardProps {
   children: React.ReactNode;
@@ -9,8 +10,10 @@ interface CardProps {
 const Card = ({ children, nativeWindStyle }: CardProps) => {
   return (
     <View
-      className={clsx(nativeWindStyle, "mt-4 px-6 py-4 bg-slate-50 rounded-xl")}
-    >
+      className={clsx(
+        nativeWindStyle,
+        "mt-4 px-6 py-4 bg-slate-50 rounded-xl"
+      )}>
       {children}
     </View>
   );

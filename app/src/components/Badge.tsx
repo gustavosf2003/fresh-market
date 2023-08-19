@@ -1,6 +1,7 @@
 import React from "react";
-import { View, Text, TouchableOpacity } from "react-native";
+
 import { clsx } from "clsx";
+import { Text, TouchableOpacity } from "react-native";
 
 interface BadgeProps {
   title: string;
@@ -17,8 +18,7 @@ const Badge = ({ title, badgeChange, active }: BadgeProps) => {
         active
           ? " border-2 border-primary bg-[#e1fdefff] text-primary"
           : "bg-gray-300 "
-      )}
-    >
+      )}>
       <Text className="pt-2 pb-2 capitalize">{title}</Text>
     </TouchableOpacity>
   );

@@ -1,9 +1,10 @@
-import React, { useEffect, useLayoutEffect, useState } from "react";
-import MapView from "react-native-maps";
-import { Marker } from "react-native-maps";
+import React, { useEffect, useState } from "react";
+
+import { Feather } from "@expo/vector-icons";
 import { Text, View } from "react-native";
 import Geocoder from "react-native-geocoding";
-import { Feather } from "@expo/vector-icons";
+import MapView from "react-native-maps";
+import { Marker } from "react-native-maps";
 
 interface Location {
   lat: number;
@@ -23,7 +24,7 @@ const MapComponent = ({ address }: MapComponentProps) => {
         setLocation({ lat: lat, lng: lng });
       })
       .catch((error) => console.warn(error));
-  }, []);
+  }, [address]);
 
   if (!location) {
     return (
@@ -47,8 +48,7 @@ const MapComponent = ({ address }: MapComponentProps) => {
         latitudeDelta: 0.005,
         longitudeDelta: 0.02,
       }}
-      scrollEnabled={false}
-    >
+      scrollEnabled={false}>
       <Marker
         coordinate={{
           latitude: location.lat,

@@ -1,16 +1,9 @@
-import React, { ReactElement, useState } from "react";
-import {
-  View,
-  Text,
-  Button,
-  SafeAreaView,
-  ScrollView,
-  TouchableOpacity,
-} from "react-native";
-import Modal from "react-native-modal";
-import { Ionicons } from "@expo/vector-icons";
+import React, { ReactElement } from "react";
+
 import { appStyle } from "@app/styles";
-import Counter from "./Counter";
+import { Ionicons } from "@expo/vector-icons";
+import { View, Text, TouchableOpacity } from "react-native";
+import Modal from "react-native-modal";
 
 interface CustomModalProps {
   isOpen: boolean;
@@ -41,15 +34,13 @@ const CustomModal = ({
           marginLeft: 0,
         }}
         onBackdropPress={toggleModal}
-        isVisible={isOpen}
-      >
+        isVisible={isOpen}>
         <View className="rounded-md">
           <View className="flex flex-row items-center justify-between px-4 pt-4 pb-3 bg-white rounded-lg">
             <Text className="text-2xl font-bold">{title}</Text>
             <TouchableOpacity
               onPress={toggleModal}
-              className="p-1 rounded-full bg-slate-200"
-            >
+              className="p-1 rounded-full bg-slate-200">
               <Ionicons name="close" size={28} color={appStyle.iconColor} />
             </TouchableOpacity>
           </View>

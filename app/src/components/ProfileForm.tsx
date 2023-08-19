@@ -1,10 +1,12 @@
 import React from "react";
-import { View, Text, TextInput, Image, ScrollView } from "react-native";
-
 import { useState, useEffect } from "react";
+
 import { StorageKeys, getStorageData } from "@app/utils/storage";
-import { setStorageData } from "../../utils/storage";
+import { View, Text, Image, ScrollView } from "react-native";
 import { Input } from "react-native-elements";
+
+import { setStorageData } from "../../utils/storage";
+
 const ProfileForm: React.FC = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");

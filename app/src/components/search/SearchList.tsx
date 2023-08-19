@@ -1,5 +1,8 @@
+import React, { useContext, useState } from "react";
+
+import { useQuery } from "@apollo/react-hooks";
+import { ProductContext } from "@app/context/product";
 import { GET_PRODUCTS } from "@app/queries/products";
-import React, { useContext, useEffect, useState } from "react";
 import {
   View,
   Text,
@@ -7,12 +10,10 @@ import {
   ActivityIndicator,
   TouchableOpacity,
 } from "react-native";
-import { useQuery } from "@apollo/react-hooks";
+
 import { Product } from "../../../interfaces/products";
 import { getQuantityByProductId } from "../ProductCard";
-import { ProductContext } from "@app/context/product";
 import ProductModal from "../ProductModal";
-import Modal from "react-native-modal";
 interface SearchListProps {
   searchText: string;
 }
@@ -51,14 +52,13 @@ const SearchList = ({ searchText }: SearchListProps) => {
         <View className="bg-slate-200 py-2.5 px-2">
           {loading && <ActivityIndicator />}
           {error && <Text>There was an error</Text>}
-          {searchedItems?.length == 0 && <Text>No result</Text>}
+          {searchedItems?.length === 0 && <Text>No result</Text>}
           {data &&
             searchedItems.map((item: Product) => (
               <TouchableOpacity
                 key={item.id}
                 className="flex flex-row items-start mt-3"
-                onPress={() => openModal(item)}
-              >
+                onPress={() => openModal(item)}>
                 <Image
                   className="w-10 h-10"
                   source={{ uri: item.content.image.filename }}

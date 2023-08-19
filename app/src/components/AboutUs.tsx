@@ -1,11 +1,13 @@
+import React from "react";
+
 import { useQuery } from "@apollo/react-hooks";
 import { GET_ABOUTUS } from "@app/queries/aboutUs";
-import React from "react";
-import { View, Text, ScrollView } from "react-native";
+import { Text, ScrollView } from "react-native";
+
 import AboutUsLoader from "./loader/AboutUsLoader";
 
 const AboutUs: React.FC = () => {
-  const { loading, error, data } = useQuery(GET_ABOUTUS);
+  const { loading, data } = useQuery(GET_ABOUTUS);
   const aboutUs = data?.AboutusItem.content;
   return (
     <ScrollView>

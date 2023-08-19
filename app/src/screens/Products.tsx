@@ -1,26 +1,28 @@
+import React, { useContext, useEffect, useState } from "react";
+
+import { businessRules } from "@app/config/constants";
+import { ProductContext } from "@app/context/product";
+import { sendOrder } from "@app/services/order";
+import { appStyle } from "@app/styles";
+import { totalProducts } from "@app/utils/manageCart";
 import {
   StorageKeys,
   getStorageData,
   setStorageData,
 } from "@app/utils/storage";
-import React, { useContext, useEffect, useState } from "react";
+import { Feather } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 import { Text, View, ScrollView, TouchableOpacity } from "react-native";
-import { ProductContext } from "@app/context/product";
-import { businessRules } from "@app/config/constants";
-import StretchedButton from "../components/StretchedButton";
-import ProductCard from "../components/ProductCard";
+
 import Card from "../components/Card";
 import Layout from "../components/Layout";
+import ProductCard from "../components/ProductCard";
 import Address from "../components/products/Address";
 import Costs from "../components/products/Costs";
-import Tips from "../components/products/Tips";
-import Review from "../components/products/Review";
-import { totalProducts } from "@app/utils/manageCart";
-import { useNavigation } from "@react-navigation/native";
-import { Feather } from "@expo/vector-icons";
-import { appStyle } from "@app/styles";
-import { sendOrder } from "@app/services/order";
 import NoProducts from "../components/products/NoProducts";
+import Review from "../components/products/Review";
+import Tips from "../components/products/Tips";
+import StretchedButton from "../components/StretchedButton";
 
 const Products: React.FC = () => {
   const { savedProducts, setSavedProducts } = useContext(ProductContext);
@@ -37,7 +39,7 @@ const Products: React.FC = () => {
       }
     };
     fetchSavedProducts();
-  }, []);
+  }, [setSavedProducts]);
   useEffect(() => {
     setStorageData(StorageKeys.products, JSON.stringify(savedProducts));
   }, [savedProducts]);
@@ -55,8 +57,7 @@ const Products: React.FC = () => {
                 businessRules.deliveryFee,
                 0
               );
-            }}
-          >
+            }}>
             Confirm order
           </StretchedButton>
         </View>
@@ -66,8 +67,7 @@ const Products: React.FC = () => {
           contentContainerStyle={{
             paddingTop: 12,
             paddingBottom: 320,
-          }}
-        >
+          }}>
           {savedProducts.length > 0 ? (
             <>
               <Card>

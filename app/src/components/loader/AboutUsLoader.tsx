@@ -1,6 +1,7 @@
 import React from "react";
-import { View, ScrollView } from "react-native";
+
 import { Skeleton } from "@rneui/themed";
+import { View, ScrollView } from "react-native";
 
 const AboutUsLoader: React.FC = () => {
   const skeletons = Array(30).fill(null);

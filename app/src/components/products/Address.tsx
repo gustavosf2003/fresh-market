@@ -1,8 +1,10 @@
 import React from "react";
-import { View, Text } from "react-native";
-import Card from "../Card";
-import { Feather } from "@expo/vector-icons";
+
 import { appStyle } from "@app/styles";
+import { Feather } from "@expo/vector-icons";
+import { View, Text } from "react-native";
+
+import Card from "../Card";
 import MapComponent from "../MapComponent";
 
 interface AddressProps {

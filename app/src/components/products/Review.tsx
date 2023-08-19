@@ -1,10 +1,12 @@
 import React, { useMemo } from "react";
-import { View, Text, Image } from "react-native";
-import Card from "../Card";
-import { calculateTotalCost } from "@app/utils/prices";
+
 import { businessRules } from "@app/config/constants";
 import { Product } from "@app/interfaces/products";
+import { calculateTotalCost } from "@app/utils/prices";
 import { parseCurrency } from "@app/utils/prices";
+import { View, Text, Image } from "react-native";
+
+import Card from "../Card";
 
 interface ReviewProps {
   products: Product[];

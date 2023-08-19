@@ -1,12 +1,13 @@
-import React, { useContext, useState } from "react";
-import { View, Text, Image, ScrollView } from "react-native";
+import React, { useContext } from "react";
+
+import { businessRules } from "@app/config/constants";
+import { ProductContext } from "@app/context/product";
+import { Product } from "@app/interfaces/products";
+import { addToCart, removeFromCart } from "@app/utils/manageCart";
+import { View, Text } from "react-native";
 
 import Counter from "./Counter";
 import CustomModal from "./CustomModal";
-import { addToCart, removeFromCart } from "@app/utils/manageCart";
-import { ProductContext } from "@app/context/product";
-import { Product } from "@app/interfaces/products";
-import { businessRules } from "@app/config/constants";
 
 interface ProductModalProps {
   product: Product;
@@ -29,8 +30,7 @@ const ProductModal = ({
     <CustomModal
       isOpen={isOpen}
       setIsOpen={setIsOpen}
-      title={productContent.name}
-    >
+      title={productContent.name}>
       <>
         <View className="bg-white">
           <View className="flex flex-row items-center -mt-1">

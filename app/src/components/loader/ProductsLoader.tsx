@@ -1,4 +1,5 @@
 import React from "react";
+
 import { Skeleton } from "@rneui/themed";
 import { ScrollView, View } from "react-native";
 

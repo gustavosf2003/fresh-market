@@ -1,6 +1,8 @@
 import React, { useRef, useState } from "react";
-import { View, Text, TextInput, Keyboard } from "react-native";
+
 import { Ionicons } from "@expo/vector-icons";
+import { View, TextInput } from "react-native";
+
 import SearchList from "./SearchList";
 
 function showSearchedProducts(textLength: number): boolean {

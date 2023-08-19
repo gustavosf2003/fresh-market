@@ -1,11 +1,12 @@
 import React from "react";
-import { View, Text, TouchableOpacity, SafeAreaView } from "react-native";
-import { Feather } from "@expo/vector-icons";
-import { clsx } from "clsx";
-import { FontAwesome } from "@expo/vector-icons";
-import { appStyle } from "@app/styles";
-import { useNavigation, useRoute } from "@react-navigation/native";
+
 import { RoutesName } from "@app/config/constants";
+import { appStyle } from "@app/styles";
+import { Feather } from "@expo/vector-icons";
+import { FontAwesome } from "@expo/vector-icons";
+import { useNavigation, useRoute } from "@react-navigation/native";
+import { clsx } from "clsx";
+import { View, TouchableOpacity, SafeAreaView } from "react-native";
 
 interface BottomBarIconProps {
   icon: any;
@@ -16,7 +17,7 @@ interface BottomBarIconProps {
 const BottomBarIcon = ({ icon, onPress, active }: BottomBarIconProps) => {
   return (
     <TouchableOpacity onPress={onPress} className="flex items-center w-10 ">
-      {icon == "shopping-basket" ? (
+      {icon === "shopping-basket" ? (
         <FontAwesome name={icon} size={24} color={appStyle.iconColor} />
       ) : (
         <Feather name={icon} size={24} color={appStyle.iconColor} />
@@ -26,17 +27,17 @@ const BottomBarIcon = ({ icon, onPress, active }: BottomBarIconProps) => {
           "h-1.5 mt-1.5 rounded-sm w-8",
           active ? "bg-primary" : null
         )}
-      ></View>
+      />
     </TouchableOpacity>
   );
 };
 
-function isCurrentRoute(routeName: string) {
-  const route = useRoute();
-  return route.name == routeName;
+function isCurrentRoute(route, routeName: string): boolean {
+  return route.name === routeName;
 }
 
 const BottomBar: React.FC = () => {
+  const route = useRoute();
   const navigation = useNavigation();
 
   return (
@@ -46,18 +47,18 @@ const BottomBar: React.FC = () => {
           <BottomBarIcon
             icon="grid"
             onPress={() => navigation.navigate(RoutesName.home as never)}
-            active={isCurrentRoute(RoutesName.home)}
-          ></BottomBarIcon>
+            active={isCurrentRoute(route, RoutesName.home)}
+          />
           <BottomBarIcon
             icon="shopping-basket"
             onPress={() => navigation.navigate(RoutesName.products as never)}
-            active={isCurrentRoute(RoutesName.products)}
-          ></BottomBarIcon>
+            active={isCurrentRoute(route, RoutesName.products)}
+          />
           <BottomBarIcon
             icon="user"
             onPress={() => navigation.navigate(RoutesName.user as never)}
-            active={isCurrentRoute(RoutesName.user)}
-          ></BottomBarIcon>
+            active={isCurrentRoute(route, RoutesName.user)}
+          />
         </View>
       </SafeAreaView>
     </>

@@ -1,8 +1,10 @@
 import React from "react";
-import DiscountCard from "./DiscountCard";
-import { View, Text } from "react-native";
-import { GET_DISCOUNTS } from "@app/queries/discounts";
+
 import { useQuery } from "@apollo/react-hooks";
+import { GET_DISCOUNTS } from "@app/queries/discounts";
+import { View, Text } from "react-native";
+
+import DiscountCard from "./DiscountCard";
 
 interface DiscountProps {
   id: number;
@@ -15,7 +17,7 @@ interface DiscountContent {
 }
 
 const Discounts: React.FC = () => {
-  const { loading, error, data } = useQuery(GET_DISCOUNTS);
+  const { data } = useQuery(GET_DISCOUNTS);
   return (
     <View>
       <Text className="mb-8 text-2xl font-bold">Last Orders</Text>

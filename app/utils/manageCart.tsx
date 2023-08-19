@@ -1,6 +1,7 @@
-import { Product } from "../interfaces/products";
 import { ProductCardProps } from "@app/src/components/ProductCard";
+
 import { StorageKeys, setStorageData } from "./storage";
+import { Product } from "../interfaces/products";
 
 export const addToCart = (params: ProductCardProps): void => {
   var { product, savedProducts, setSavedProducts } = params;
@@ -9,8 +10,8 @@ export const addToCart = (params: ProductCardProps): void => {
   );
   if (existingProduct) {
     // Increment quantity if product already in cart
-    setSavedProducts((savedProducts: Product[]) =>
-      savedProducts.map((p: Product) =>
+    setSavedProducts((existingProducts: Product[]) =>
+      existingProducts.map((p: Product) =>
         p.id === product.id ? { ...p, quantity: p.quantity! + 1 } : p
       )
     );
@@ -36,8 +37,8 @@ export const removeFromCart = (params: ProductCardProps) => {
       );
     } else {
       // Remove product from cart if only 1 of product in cart
-      setSavedProducts((savedProducts: Product[]) =>
-        savedProducts.filter((p: Product) => p.id !== product.id)
+      setSavedProducts((existingProducts: Product[]) =>
+        existingProducts.filter((p: Product) => p.id !== product.id)
       );
     }
     setStorageData(StorageKeys.products, JSON.stringify(savedProducts));

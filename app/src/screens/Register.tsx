@@ -1,4 +1,10 @@
 import React from "react";
+
+import { RoutesName } from "@app/config/constants";
+import { setStorageData, StorageKeys } from "@app/utils/storage";
+import { useNavigation } from "@react-navigation/native";
+import LottieView from "lottie-react-native";
+import { useForm, Controller } from "react-hook-form";
 import {
   View,
   Text,
@@ -7,13 +13,9 @@ import {
   Alert,
   KeyboardAvoidingView,
 } from "react-native";
-import LottieView from "lottie-react-native";
 import { Input } from "react-native-elements";
+
 import StretchedButton from "../components/StretchedButton";
-import { useForm, Controller } from "react-hook-form";
-import { setStorageData, StorageKeys } from "@app/utils/storage";
-import { RoutesName } from "@app/config/constants";
-import { useNavigation } from "@react-navigation/native";
 
 interface FormData {
   name: string;
@@ -124,8 +126,7 @@ const Register = () => {
               )}
               <StretchedButton
                 nativeWindStyle="mt-6"
-                onPress={handleSubmit(onSubmit)}
-              >
+                onPress={handleSubmit(onSubmit)}>
                 Create Account
               </StretchedButton>
             </View>

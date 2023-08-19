@@ -1,6 +1,6 @@
-import { StorageKeys, getStorageData } from '@app/utils/storage';
 import { businessRules } from "@app/config/constants";
 import { Product } from "@app/interfaces/products";
+import { StorageKeys, getStorageData } from "@app/utils/storage";
 
 export function calculateSubtotalCost(
   items: Product[],
@@ -35,30 +35,29 @@ export function parseCurrency(value: number) {
   return `${formattedNum}${businessRules.currency}`;
 }
 
-
-enum DiscountDays  {
+enum DiscountDays {
   Halloween = "11/03",
   Christmas = "25/12",
   Birthday = "06/10",
 }
 
 export async function getDiscount() {
-  var date = new Date
-  var currentDate = `${date.getDate()}/${date.getMonth() + 1}`
-  let orders = await getStorageData(StorageKeys.orders)
-  if (typeof orders === 'string' && orders.length > 0) {
+  var date = new Date();
+  var currentDate = `${date.getDate()}/${date.getMonth() + 1}`;
+  let orders = await getStorageData(StorageKeys.orders);
+  if (typeof orders === "string" && orders.length > 0) {
     const parsedOrders = JSON.parse(orders);
-    if(parsedOrders.length < 1){
-      return 1.15
+    if (parsedOrders.length < 1) {
+      return 1.15;
     }
   }
   switch (currentDate) {
     case DiscountDays.Halloween:
-      return 1.05
+      return 1.05;
     case DiscountDays.Birthday:
-    return 2
+      return 2;
     case DiscountDays.Christmas:
-      return 1.15
+      return 1.15;
   }
-  return 1
+  return 1;
 }

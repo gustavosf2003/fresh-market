@@ -1,14 +1,15 @@
-import axios from "axios";
-import { NavigationProp } from "@react-navigation/native";
-import { RoutesName } from "../config/constants";
+import { Product } from "@app/interfaces/products";
 import { calculateTotalCost } from "@app/utils/prices";
-import { API_ENDPOINT } from "@env";
 import {
   StorageKeys,
   getStorageData,
   setStorageData,
 } from "@app/utils/storage";
-import { Product } from "@app/interfaces/products";
+import { API_ENDPOINT } from "@env";
+import { NavigationProp } from "@react-navigation/native";
+import axios from "axios";
+
+import { RoutesName } from "../config/constants";
 
 interface Order {
   name: string | null | undefined;
@@ -25,8 +26,7 @@ export async function sendOrder(
   products: Product[],
   tips: number,
   deliveryFee: number,
-  discount: number,
-  price?: number
+  discount: number
 ) {
   let order: Order = {
     name: await getStorageData(StorageKeys.name),
@@ -38,6 +38,7 @@ export async function sendOrder(
     deliveryFee: deliveryFee,
   };
   try {
+    console.log("Sending order");
     const response = await axios.post(`${API_ENDPOINT}/order`, order);
     console.log(response.data);
     navigation.navigate(RoutesName.processing as never);

@@ -1,4 +1,5 @@
 import React from "react";
+
 import { View, Text, Pressable, GestureResponderEvent } from "react-native";
 
 interface CounterProps {
@@ -24,8 +25,7 @@ const Counter = ({ counter, removeItem, addItem }: CounterProps) => {
             ? "ml-3 py-1.5 px-3 "
             : " w-10 h-10 flex items-center justify-center"
         }
-        onPress={addItem}
-      >
+        onPress={addItem}>
         <Text className="text-xl">+</Text>
       </Pressable>
     </View>

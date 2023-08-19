@@ -1,13 +1,15 @@
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React from "react";
+import { useState, useEffect } from "react";
+
+import { RoutesName } from "@app/config/constants";
+import ProcessingOrder from "@app/src/screens/ProcessingOrder";
+import Register from "@app/src/screens/Register";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+
 import Home from "../src/screens/Home";
 import Products from "../src/screens/Products";
 import User from "../src/screens/User";
-import { RoutesName } from "@app/config/constants";
-import Register from "@app/src/screens/Register";
 import { getStorageData, StorageKeys } from "../utils/storage";
-import { useState, useEffect } from "react";
-import ProcessingOrder from "@app/src/screens/ProcessingOrder";
 
 async function checkRegistration(): Promise<boolean> {
   const isRegistered = await getStorageData(StorageKeys.isRegistered);
@@ -32,8 +34,7 @@ const Routes = () => {
         screenOptions={{
           headerShown: false,
           animation: "none",
-        }}
-      >
+        }}>
         <Stack.Screen name={RoutesName.home} component={Home} />
         <Stack.Screen name={RoutesName.register} component={Register} />
         <Stack.Screen name={RoutesName.products} component={Products} />

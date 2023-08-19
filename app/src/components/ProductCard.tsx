@@ -1,14 +1,14 @@
 import React, { useContext, useEffect, useState } from "react";
-import { View, Text, Image, TouchableOpacity, Button } from "react-native";
-import { addToCart, removeFromCart } from "@app/utils/manageCart";
-import { Product } from "@app/interfaces/products";
+
 import { ProductContext } from "@app/context/product";
-import { businessRules } from "@app/config/constants";
+import { Product } from "@app/interfaces/products";
+import { addToCart, removeFromCart } from "@app/utils/manageCart";
+import { View, Text, Image, TouchableOpacity } from "react-native";
+
 import Counter from "./Counter";
-import { parseCurrency } from "../../utils/prices";
-import CustomModal from "./CustomModal";
 import ProductModal from "./ProductModal";
 import { SnackBarContext } from "../../context/snackbar";
+import { parseCurrency } from "../../utils/prices";
 
 export interface ProductCardProps {
   savedProducts: Product[];
@@ -25,11 +25,11 @@ export function getQuantityByProductId(
   items: Product[],
   id: number
 ): number | undefined {
-  const item = items.find((item) => item.id === id);
-  return item?.quantity ?? 0;
+  const product = items.find((item) => item.id === id);
+  return product?.quantity ?? 0;
 }
 
-const ProductCard = ({ product, quantity, showDynamicPrice }: ProductProp) => {
+const ProductCard = ({ product, showDynamicPrice }: ProductProp) => {
   const { savedProducts, setSavedProducts } = useContext(ProductContext);
   const { setTitle } = useContext(SnackBarContext);
   const [counterValue, setCounterValue] = useState<number>(0);
@@ -38,7 +38,7 @@ const ProductCard = ({ product, quantity, showDynamicPrice }: ProductProp) => {
 
   useEffect(() => {
     setCounterValue(getQuantityByProductId(savedProducts, product.id)!);
-  }, [savedProducts]);
+  }, [product.id, savedProducts]);
 
   return (
     <>
@@ -51,8 +51,7 @@ const ProductCard = ({ product, quantity, showDynamicPrice }: ProductProp) => {
       />
       <TouchableOpacity
         onPress={() => setIsModalVisible(true)}
-        className="flex flex-row justify-between mt-4"
-      >
+        className="flex flex-row justify-between mt-4">
         <View className="flex flex-row ">
           <View className="w-32 h-24">
             <Image

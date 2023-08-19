@@ -1,12 +1,10 @@
 import React from "react";
-import { View, Text, ScrollView, Button, TouchableOpacity } from "react-native";
+
+import { View, Text, ScrollView } from "react-native";
+
 import OrderCard from "./OrderCard";
-import LottieView from "lottie-react-native";
-import { useNavigation } from "@react-navigation/native";
-import { RoutesName } from "@app/config/constants";
 
 const Orders: React.FC = () => {
-  const navigation = useNavigation();
   return (
     <View className="flex ">
       <Text className="mb-8 text-2xl font-bold">Last Orders</Text>

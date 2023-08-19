@@ -1,12 +1,13 @@
-import React, { useContext, useEffect } from "react";
-import { View, Text, Button, SafeAreaView } from "react-native";
-import { useNavigation, useRoute } from "@react-navigation/native";
-import { FontAwesome } from "@expo/vector-icons";
-import { appStyle } from "@app/styles";
-import { useFonts } from "expo-font";
+import React, { useContext } from "react";
+
 import { RoutesName } from "@app/config/constants";
 import { ProductContext } from "@app/context/product";
+import { appStyle } from "@app/styles";
 import { totalProducts } from "@app/utils/manageCart";
+import { FontAwesome } from "@expo/vector-icons";
+import { useNavigation, useRoute } from "@react-navigation/native";
+import { useFonts } from "expo-font";
+import { View, Text, SafeAreaView } from "react-native";
 
 const AppBar: React.FC = () => {
   const { savedProducts } = useContext(ProductContext);
@@ -25,8 +26,7 @@ const AppBar: React.FC = () => {
       <View className="flex flex-row items-center justify-between px-5 py-3 bg-primary">
         <Text
           className="text-4xl text-white basis-1/2"
-          style={{ fontFamily: "Caveat" }}
-        >
+          style={{ fontFamily: "Caveat" }}>
           Fresh Market
         </Text>
         <View>
